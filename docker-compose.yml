@@ -1,0 +1,55 @@
+# LineageStudio local stack.
+# SQLite remains the default for bare-metal `npm run dev`.
+# This compose file is the optional Postgres path.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - lineage_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d appdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    environment:
+      PORT: "4000"
+      DATABASE_DRIVER: postgres
+      DATABASE_URL: postgres://app:app@db:5432/appdb
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY:-}
+      OLLAMA_ENABLED: ${OLLAMA_ENABLED:-false}
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    environment:
+      API_URL: http://backend:4000
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  lineage_pg:
