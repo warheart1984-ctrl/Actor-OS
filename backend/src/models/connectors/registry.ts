@@ -1,5 +1,6 @@
 import { AnthropicConnector } from './AnthropicConnector.js';
 import { GeminiConnector } from './GeminiConnector.js';
+import { LemonadeConnector } from './LemonadeConnector.js';
 import { LocalConnector } from './LocalConnector.js';
 import { MockConnector } from './MockConnector.js';
 import { OpenAICompatibleConnector } from './OpenAICompatibleConnector.js';
@@ -14,6 +15,7 @@ export const SUPPORTED_PROVIDERS = [
   'gemini',
   'mistral',
   'ollama',
+  'lemonade',
   'mock',
 ] as const;
 
@@ -53,6 +55,15 @@ export function buildConnectorRegistry(env: NodeJS.ProcessEnv = process.env): Co
     env['OLLAMA_ENABLED'] === 'true'
       ? new LocalConnector(env['OLLAMA_BASE_URL'])
       : new MockConnector('ollama');
+
+  // Lemonade — local AI server (LLM, TTS, image gen)
+  registry['lemonade'] =
+    env['LEMONADE_ENABLED'] === 'true'
+      ? new LemonadeConnector(
+          env['LEMONADE_API_KEY'] ?? 'lemonade',
+          env['LEMONADE_BASE_URL'] ?? 'http://127.0.0.1:13307/v1',
+        )
+      : new MockConnector('lemonade');
 
   return registry;
 }
