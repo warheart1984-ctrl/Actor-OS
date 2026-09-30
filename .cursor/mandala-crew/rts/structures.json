@@ -1,0 +1,110 @@
+{
+  "status": "declared",
+  "count": 8,
+  "structures": [
+    {
+      "id": "sales-hq",
+      "name": "Sales HQ",
+      "description": "Unlocks opportunity scouting and revenue-facing missions.",
+      "map": { "x": 18, "y": 22 },
+      "buildCost": { "time": 8, "budget": 40, "attention": 6 },
+      "unlocks": {
+        "unitRoles": ["strategist", "diplomat"],
+        "droneTypes": ["data-drone"],
+        "phases": ["vision"],
+        "skillTags": ["plan", "bootstrap", "brainstorming"]
+      }
+    },
+    {
+      "id": "engineering-hub",
+      "name": "Engineering Hub",
+      "description": "Core build capacity for product delivery units and build drones.",
+      "map": { "x": 48, "y": 38 },
+      "buildCost": { "time": 12, "budget": 60, "compute": 20, "attention": 10 },
+      "unlocks": {
+        "unitRoles": ["architect", "builder"],
+        "droneTypes": ["build-drone", "refactor-drone"],
+        "phases": ["architecture", "implementation"],
+        "skillTags": ["coding", "implementor", "architect"]
+      }
+    },
+    {
+      "id": "marketing-tower",
+      "name": "Marketing Tower",
+      "description": "Territory messaging and customer-segment expansion.",
+      "map": { "x": 72, "y": 20 },
+      "buildCost": { "time": 8, "budget": 35, "attention": 8 },
+      "unlocks": {
+        "unitRoles": ["bard", "visionary"],
+        "droneTypes": ["data-drone"],
+        "phases": ["vision", "design"],
+        "skillTags": ["content", "design"]
+      }
+    },
+    {
+      "id": "finance-vault",
+      "name": "Finance Vault",
+      "description": "Budget metering and cost-reduction missions.",
+      "map": { "x": 22, "y": 68 },
+      "buildCost": { "time": 10, "budget": 50, "attention": 6 },
+      "unlocks": {
+        "unitRoles": ["auditor"],
+        "droneTypes": ["data-drone"],
+        "phases": ["operations"],
+        "skillTags": ["cost", "ops"]
+      }
+    },
+    {
+      "id": "support-center",
+      "name": "Support Center",
+      "description": "Incident intake and user-satisfaction battles.",
+      "map": { "x": 78, "y": 62 },
+      "buildCost": { "time": 8, "budget": 30, "attention": 12 },
+      "unlocks": {
+        "unitRoles": ["responder", "watcher"],
+        "droneTypes": ["fix-drone", "monitor-drone"],
+        "phases": ["operations", "testing"],
+        "skillTags": ["incident", "support"]
+      }
+    },
+    {
+      "id": "data-warehouse",
+      "name": "Data Warehouse",
+      "description": "Evidence storage and analytics drones.",
+      "map": { "x": 40, "y": 72 },
+      "buildCost": { "time": 10, "budget": 45, "storage": 40, "compute": 15 },
+      "unlocks": {
+        "unitRoles": ["librarian", "verifier"],
+        "droneTypes": ["data-drone", "test-drone"],
+        "phases": ["testing"],
+        "skillTags": ["data", "evidence"]
+      }
+    },
+    {
+      "id": "ai-forge",
+      "name": "AI Forge",
+      "description": "Agent training yard and ModeKey lens workshop.",
+      "map": { "x": 58, "y": 48 },
+      "buildCost": { "time": 14, "budget": 70, "compute": 40, "attention": 14 },
+      "unlocks": {
+        "unitRoles": ["architect", "builder", "guardian"],
+        "droneTypes": ["build-drone", "refactor-drone"],
+        "phases": ["architecture", "implementation", "design"],
+        "skillTags": ["ai", "crew", "modes"]
+      }
+    },
+    {
+      "id": "ops-command",
+      "name": "Ops Command",
+      "description": "Deploy, monitor, and constitutional compliance command post.",
+      "map": { "x": 50, "y": 18 },
+      "buildCost": { "time": 12, "budget": 55, "compute": 20, "attention": 12 },
+      "unlocks": {
+        "unitRoles": ["operator", "watcher", "guardian", "responder"],
+        "droneTypes": ["deploy-drone", "infra-drone", "monitor-drone", "fix-drone"],
+        "phases": ["operations", "testing"],
+        "skillTags": ["deploy", "ops", "security"]
+      }
+    }
+  ]
+}

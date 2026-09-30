@@ -20,6 +20,8 @@ Verified against the code in this repository:
 | Mock fallback when API keys are missing | `MockConnector` + `buildConnectorRegistry` |
 | SQLite default; optional Postgres | `DATABASE_DRIVER`, `docker-compose.yml` |
 | Three-panel studio UI + Operator Console + Agent Graph | `frontend/src/` |
+| Mandala 100+ESFR crew pack load, skill catalog/paths, foreman plans | `MandalaCrewEngine`, `/api/crew`, Mandala Crew UI — see `docs/mandala-crew/` |
+| Business RTS catalog + in-memory session sim (missions → crew plan) | `RtsEngine`, `/api/rts`, `rts-app`, Business RTS tab — see `docs/rts/` |
 | Agent settings (binding, temperature, max tokens, role, system) | `ProfileSettingsPanel` + `PATCH /api/profiles/:id` |
 | Optional Electron shell | `desktop/` |
 
@@ -36,6 +38,7 @@ npm run dev
 
 - API: http://localhost:4000
 - UI: http://localhost:3000
+- Business RTS (standalone): `npm run dev:rts` → http://localhost:3001
 - WebSocket: `ws://localhost:4000/ws` (proxied through Vite as `/ws`)
 
 ### Smoke path
@@ -45,11 +48,16 @@ npm run dev
 3. In **Chain builder**, add Research then Summary and click **Run chain** — lineage shows ordered `chain_step` tags.
 4. Use **Send to another agent** for a handoff — lineage shows an `interaction` and a reply artifact.
 5. Open **Operator console** for cross-agent replay; **Agent graph** for message edges.
-6. In agent settings, swap connector/model — agent id and lineage stay put.
+6. Open **Mandala crew** to inspect the 100+ESFR roster (6 phases), search the vendor skill catalog, pick a ModeKey, and generate a foreman invoke brief (ESFR #101 last).
+7. Open **Business RTS** to build structures, train units, deploy drones, and brief the foreman (mission → Mandala plan + ESFR).
+8. In agent settings, swap connector/model — agent id and lineage stay put.
 
 Or run the scripted smoke:
 
 ```bash
+npm run crew:smoke
+npm run rts:smoke
+npm run crew:generate   # refresh vendor + cursor skill catalogs
 npm --workspace backend run smoke
 ```
 
@@ -59,7 +67,7 @@ npm --workspace backend run smoke
 npm test
 ```
 
-Covers `ModelBinding`, `TaskSpec`, `ModelRouter` (incl. binding swap), lineage event types, MessageBus persistence/graph, and `agent_task` envelope validation.
+Covers `ModelBinding`, `TaskSpec`, `ModelRouter` (incl. binding swap), lineage event types, MessageBus persistence/graph, `agent_task` envelope validation, and Mandala crew pack invariants.
 
 ## Environment
 
@@ -74,6 +82,7 @@ See [`backend/.env.example`](backend/.env.example). Any provider left blank fall
 | `OLLAMA_ENABLED=true` | Talk to a local Ollama daemon |
 | `DATABASE_DRIVER=sqlite\|postgres` | Storage backend (default `sqlite`) |
 | `DATABASE_URL` | Required when `DATABASE_DRIVER=postgres` |
+| `MANDALA_CREW_ROOT` | Optional override for crew pack path (default: `backend/dist/mandala-crew` after build, else `.cursor/mandala-crew`) |
 
 ## Docker / Postgres (optional)
 

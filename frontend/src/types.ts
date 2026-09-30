@@ -130,4 +130,113 @@ export type Health = {
   status: string;
   database: string;
   providers: Array<{ provider: string; live: boolean }>;
+  mandalaCrew?: {
+    status: string;
+    preEsfrCount: number;
+    esfrSlot: number;
+    phaseCount?: number;
+    modeKeyCount: number;
+    vendorCatalogCount: number;
+  };
+  rts?: {
+    status: string;
+    skillCount: number;
+    structureCount: number;
+  };
+};
+
+export type CrewPhase = {
+  id: string;
+  name: string;
+  orderStart: number;
+  orderEnd: number;
+  family: string;
+};
+
+export type CrewAgent = {
+  id: string;
+  name: string;
+  description: string;
+  family: string;
+  phase: string;
+  order: number;
+  source: string;
+  cursor_agent: string;
+};
+
+export type CrewAgentDetail = CrewAgent & {
+  preferredSkills: string[];
+};
+
+export type ModeEntry = {
+  id: number;
+  key: string;
+  crewMode: string;
+  actorMode: string;
+  stance: string;
+  label: string;
+};
+
+export type VendorSkillHit = {
+  name: string;
+  preferred: boolean;
+  preferredBy: string[];
+  paths?: string[];
+};
+
+export type CrewStatus = {
+  status: string;
+  packRoot: string;
+  preEsfrCount: number;
+  esfrSlot: number;
+  esfrId: string;
+  phaseCount: number;
+  phases: CrewPhase[];
+  modeKeyCount: number;
+  nativeNamedModes: number;
+  vendorCatalogCount: number;
+  vendorPreferredUnique: number;
+  vendorPathIndexCount: number;
+  roleSkills: string[];
+  honesty: string[];
+  foreman?: { id: string; inRoster: false };
+  endpoints?: Record<string, string>;
+};
+
+export type CrewPlanStep = {
+  order: number;
+  agentId: string;
+  name: string;
+  description: string;
+  family: string;
+  phase: string;
+  role: 'pre_esfr' | 'esfr';
+  cursor_agent: string;
+  preferredSkills: string[];
+  onDemandSkills: string[];
+};
+
+export type CrewPlan = {
+  goal: string;
+  mode: ModeEntry | null;
+  phases: string[];
+  steps: CrewPlanStep[];
+  esfrLast: boolean;
+  skillRouting: {
+    preferredUnique: number;
+    catalogUnique: number;
+    requested: string[];
+    unresolved: string[];
+  };
+  invokeBrief: string;
+  honesty: {
+    modeAutoApply: {
+      status: string;
+      productEnforced: string[];
+      cursorDeclared: string[];
+      notClaimed: string[];
+    };
+    status: string;
+    note: string;
+  };
 };

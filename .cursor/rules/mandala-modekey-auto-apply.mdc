@@ -1,0 +1,18 @@
+---
+description: Apply Mandala ModeKey lens when an invoke brief or plan embeds one
+alwaysApply: false
+---
+
+# ModeKey auto-apply approximation
+
+When the user message, crew plan, or invoke brief contains a **ModeKey**
+(`crew__actor__stance`) or a materialized mode card:
+
+1. Treat it as the active cognitive lens for the current agent turn.
+2. Do **not** change write authority; precedence remains  
+   role bans > Constitution > Evidence > Profile > Mode.
+3. Mirror the stance bias (e.g. evidence-strict, minimal-diff) in conclusions.
+4. If no ModeKey is present, continue without inventing one.
+
+**Honesty:** This rule is guidance for Cursor agents. It is **not** a runtime
+enforcer inside the LineageStudio Node process.

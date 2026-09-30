@@ -1,0 +1,54 @@
+{
+  "status": "declared",
+  "territories": [
+    {
+      "id": "core-product",
+      "name": "Core product line",
+      "description": "Primary product domain; starting territory.",
+      "unlockedByDefault": true,
+      "unlockCost": {},
+      "unlocksMissions": ["ship-feature", "reduce-cost"],
+      "map": { "x": 50, "y": 50 }
+    },
+    {
+      "id": "new-market",
+      "name": "New market",
+      "description": "Adjacent market expansion.",
+      "unlockedByDefault": false,
+      "unlockCost": { "budget": 40, "attention": 10, "time": 8 },
+      "requiresStructures": ["sales-hq", "marketing-tower"],
+      "unlocksMissions": ["expand-territory", "raise-satisfaction"],
+      "map": { "x": 80, "y": 30 }
+    },
+    {
+      "id": "integrations",
+      "name": "Integrations belt",
+      "description": "Third-party platform integrations.",
+      "unlockedByDefault": false,
+      "unlockCost": { "budget": 35, "compute": 15, "time": 10 },
+      "requiresStructures": ["engineering-hub", "data-warehouse"],
+      "unlocksMissions": ["ship-feature", "harden-security"],
+      "map": { "x": 20, "y": 40 }
+    },
+    {
+      "id": "platform",
+      "name": "Platform frontier",
+      "description": "Internal platform and ops territory.",
+      "unlockedByDefault": false,
+      "unlockCost": { "budget": 50, "compute": 25, "time": 12 },
+      "requiresStructures": ["ops-command", "ai-forge"],
+      "unlocksMissions": ["raise-uptime", "compliance-audit"],
+      "map": { "x": 55, "y": 15 }
+    },
+    {
+      "id": "enterprise-segment",
+      "name": "Enterprise segment",
+      "description": "Enterprise customer segment with compliance pressure.",
+      "unlockedByDefault": false,
+      "unlockCost": { "budget": 60, "attention": 15, "time": 14, "risk": 5 },
+      "requiresStructures": ["finance-vault", "support-center", "ops-command"],
+      "unlocksMissions": ["compliance-audit", "raise-satisfaction", "increase-revenue"],
+      "map": { "x": 75, "y": 75 }
+    }
+  ]
+}

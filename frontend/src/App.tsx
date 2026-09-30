@@ -3,16 +3,20 @@ import { api } from './api/client';
 import { AgentGraph } from './components/AgentGraph';
 import { ProfileSidebar } from './components/ProfileSidebar';
 import { useLineageStream } from './hooks/useLineageStream';
+import { BusinessRtsConsole } from './pages/BusinessRtsConsole';
+import { MandalaCrewConsole } from './pages/MandalaCrewConsole';
 import { OperatorConsole } from './pages/OperatorConsole';
 import { ProfileWorkspace } from './pages/ProfileWorkspace';
 import type { AgentGraph as AgentGraphData, Health, Profile } from './types';
 
-type View = 'studio' | 'operator' | 'graph';
+type View = 'studio' | 'operator' | 'graph' | 'crew' | 'rts';
 
 const VIEWS: Array<{ id: View; label: string }> = [
   { id: 'studio', label: 'Studio' },
   { id: 'operator', label: 'Operator console' },
   { id: 'graph', label: 'Agent graph' },
+  { id: 'crew', label: 'Mandala crew' },
+  { id: 'rts', label: 'Business RTS' },
 ];
 
 export function App() {
@@ -104,15 +108,17 @@ export function App() {
       ) : null}
 
       <div className="flex min-h-0 flex-1">
-        <ProfileSidebar
-          profiles={profiles}
-          selectedId={selectedProfileId}
-          liveProviders={liveProviders}
-          onSelect={(id) => {
-            setSelectedProfileId(id);
-            setView('studio');
-          }}
-        />
+        {view !== 'rts' ? (
+          <ProfileSidebar
+            profiles={profiles}
+            selectedId={selectedProfileId}
+            liveProviders={liveProviders}
+            onSelect={(id) => {
+              setSelectedProfileId(id);
+              setView('studio');
+            }}
+          />
+        ) : null}
 
         <main className="flex min-w-0 flex-1">
           {view === 'studio' ? (
@@ -141,6 +147,10 @@ export function App() {
               onSelectEdge={(from, to) => api.agentMessages(from, to)}
             />
           ) : null}
+
+          {view === 'crew' ? <MandalaCrewConsole /> : null}
+
+          {view === 'rts' ? <BusinessRtsConsole /> : null}
         </main>
       </div>
     </div>

@@ -1,0 +1,54 @@
+{
+  "status": "declared",
+  "conditions": [
+    {
+      "id": "ship-features",
+      "name": "Ship features",
+      "metric": "featuresShipped",
+      "target": 5,
+      "description": "Complete ship-feature missions that pass phase pipeline planning."
+    },
+    {
+      "id": "maintain-uptime",
+      "name": "Maintain uptime",
+      "metric": "uptimeScore",
+      "target": 80,
+      "description": "Keep uptime score high by clearing incidents quickly."
+    },
+    {
+      "id": "reduce-cost",
+      "name": "Reduce cost",
+      "metric": "costEfficiency",
+      "target": 70,
+      "description": "Improve cost efficiency via finance and refactor missions."
+    },
+    {
+      "id": "increase-revenue",
+      "name": "Increase revenue",
+      "metric": "revenueScore",
+      "target": 60,
+      "description": "Grow revenue score through sales/marketing territory missions."
+    },
+    {
+      "id": "user-satisfaction",
+      "name": "Improve user satisfaction",
+      "metric": "satisfaction",
+      "target": 75,
+      "description": "Raise satisfaction via support and UX missions."
+    },
+    {
+      "id": "expand-territory",
+      "name": "Expand territory",
+      "metric": "territoriesOwned",
+      "target": 3,
+      "description": "Unlock at least three business territories."
+    },
+    {
+      "id": "constitutional-compliance",
+      "name": "Maintain constitutional compliance",
+      "metric": "constitutionalCompliance",
+      "target": 70,
+      "description": "Keep the compliance meter high via evidence-bound missions and ESFR-ready planning. Meter is declared — not an automated promotion enforcer."
+    }
+  ]
+}

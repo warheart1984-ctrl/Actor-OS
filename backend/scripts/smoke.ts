@@ -119,4 +119,37 @@ assert(graph.nodes.every((node) => node.binding?.connector), 'graph nodes need b
 assert(graph.edges.length >= 1, 'graph needs at least one edge after agent send');
 console.log(`graph ok (nodes=${graph.nodes.length}, edges=${graph.edges.length})`);
 
+const crew = (await call('GET', '/api/crew')) as {
+  status: string;
+  preEsfrCount: number;
+  esfrSlot: number;
+  esfrId: string;
+  modeKeyCount: number;
+  vendorCatalogCount: number;
+  vendorPreferredUnique: number;
+};
+assert(crew.status === 'declared_operable', 'crew status should be declared_operable');
+assert(crew.preEsfrCount === 100, 'crew should list 100 pre-ESFR agents');
+assert(crew.esfrId === 'ls-esfr' && crew.esfrSlot === 101, 'ESFR must be #101');
+assert(crew.modeKeyCount === 1000, 'modes registry should yield 1000 keys');
+assert(crew.vendorCatalogCount >= 1000, 'vendor catalog should load');
+console.log(
+  `crew ok (agents=${crew.preEsfrCount}, modes=${crew.modeKeyCount}, skills=${crew.vendorCatalogCount}, preferred=${crew.vendorPreferredUnique})`,
+);
+
+const plan = (await call('POST', '/api/crew/plan', {
+  goal: 'Smoke Mandala crew plan',
+  modeKey: 'sage__navigator__evidence-strict',
+  compact: true,
+  includeEsfr: true,
+})) as {
+  esfrLast: boolean;
+  steps: Array<{ agentId: string; role: string }>;
+  invokeBrief: string;
+};
+assert(plan.esfrLast, 'plan must end with ESFR');
+assert(plan.steps[plan.steps.length - 1]?.agentId === 'ls-esfr', 'last step must be ls-esfr');
+assert(plan.invokeBrief.includes('ls-esfr'), 'invoke brief must mention ESFR');
+console.log(`crew plan ok (steps=${plan.steps.length})`);
+
 console.log('SMOKE PASSED');
