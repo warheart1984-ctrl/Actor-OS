@@ -11,6 +11,8 @@ import type {
   Health,
   LineageEvent,
   ModeEntry,
+  PipelineDefinition,
+  PipelineRunResult,
   Profile,
   ProfileSettings,
   RunResult,
@@ -18,11 +20,41 @@ import type {
   VendorSkillHit,
 } from '../types';
 
+const TOKEN_KEY = 'lineage.apiToken';
+
+/** Fired when the API answers 401, so the shell can ask for a token. */
+export const AUTH_REQUIRED_EVENT = 'lineage:auth-required';
+
+export function getApiToken(): string | null {
+  try {
+    return window.localStorage.getItem(TOKEN_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function setApiToken(token: string | null): void {
+  try {
+    if (token) window.localStorage.setItem(TOKEN_KEY, token);
+    else window.localStorage.removeItem(TOKEN_KEY);
+  } catch {
+    // Storage can be unavailable (private mode); the token then lasts one request.
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = getApiToken();
   const response = await fetch(`/api${path}`, {
     ...init,
-    headers: { 'Content-Type': 'application/json', ...(init?.headers ?? {}) },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(init?.headers ?? {}),
+    },
   });
+  if (response.status === 401) {
+    window.dispatchEvent(new Event(AUTH_REQUIRED_EVENT));
+  }
   if (!response.ok) {
     const body = (await response.json().catch(() => ({ error: response.statusText }))) as {
       error?: string;
@@ -71,6 +103,12 @@ export const api = {
   runTask: (id: string) => post<RunResult>(`/tasks/${id}/run`),
   runChain: (id: string, steps: Array<{ agentId: string; input?: string }>) =>
     post<ChainResult>(`/tasks/${id}/chain`, { steps }),
+  listPipelines: () => request<PipelineDefinition[]>('/pipelines'),
+  runPipeline: (
+    id: string,
+    input: { title: string; input: string; must_include?: string[]; success_criteria?: string[] },
+  ) => post<PipelineRunResult>(`/pipelines/${encodeURIComponent(id)}/run`, input),
+
   taskLineage: (id: string) => request<LineageEvent[]>(`/tasks/${id}/lineage`),
   taskArtifacts: (id: string) => request<Artifact[]>(`/tasks/${id}/artifacts`),
   taskMessages: (id: string) => request<AgentMessage[]>(`/tasks/${id}/messages`),

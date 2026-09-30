@@ -33,7 +33,7 @@ export type TaskSpec = {
   context?: Record<string, unknown>;
 };
 
-export type TaskStatus = 'pending' | 'running' | 'done' | 'failed';
+export type TaskStatus = 'pending' | 'running' | 'done' | 'failed' | 'rejected';
 
 export type Task = {
   id: string;
@@ -239,4 +239,37 @@ export type CrewPlan = {
     status: string;
     note: string;
   };
+};
+
+export type PipelineDefinition = {
+  id: string;
+  name: string;
+  description: string;
+  steps: Array<{ label: string; agentId: string; instruction?: string }>;
+  gateAgentId: string;
+};
+
+export type GateCheck = {
+  id: 'outputs_non_empty' | 'evidence_intact' | 'must_include' | 'model_review';
+  status: 'passed' | 'failed' | 'skipped';
+  detail: string;
+};
+
+export type PipelineRunResult = {
+  pipelineId: string;
+  taskId: string;
+  status: TaskStatus;
+  verdict: 'approved' | 'rejected';
+  checks: GateCheck[];
+  warnings: string[];
+  review: string | null;
+  steps: Array<{
+    step: number;
+    agentId: string;
+    connector: string;
+    model: string;
+    is_mock: boolean;
+    output: string;
+  }>;
+  final_output: string;
 };

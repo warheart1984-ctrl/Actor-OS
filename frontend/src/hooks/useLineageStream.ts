@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { getApiToken } from '../api/client';
 import type { LineageEvent } from '../types';
 
 type SocketPayload =
@@ -14,14 +15,17 @@ export type LineageStream = {
  * Subscribes to the backend lineage stream. Events accumulate in arrival order
  * and are capped so a long session cannot grow without bound.
  */
-export function useLineageStream(limit = 500): LineageStream {
+export function useLineageStream(limit = 500, authVersion = 0): LineageStream {
   const [events, setEvents] = useState<LineageEvent[]>([]);
   const [connected, setConnected] = useState(false);
   const socketRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    // Browsers cannot set headers on a WebSocket, so the token rides the query.
+    const token = getApiToken();
+    const query = token ? `?token=${encodeURIComponent(token)}` : '';
+    const socket = new WebSocket(`${protocol}://${window.location.host}/ws${query}`);
     socketRef.current = socket;
 
     socket.onopen = () => setConnected(true);
@@ -39,7 +43,7 @@ export function useLineageStream(limit = 500): LineageStream {
     };
 
     return () => socket.close();
-  }, [limit]);
+  }, [limit, authVersion]);
 
   return { events, connected };
 }
