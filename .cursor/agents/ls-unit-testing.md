@@ -2,7 +2,7 @@
 name: ls-unit-testing
 description: >-
   Pre-ESFR Mandala crew #056 (testing) — Ensures individual units behave correctly.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -69,12 +69,12 @@ Ensures individual units behave correctly.
 - `testing` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/encore/ded36605dbd2d6b1459f66c95843f927892ff9a0/skills/testing/SKILL.md`
 - `test-driven-development` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/superpowers/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/test-driven-development/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.

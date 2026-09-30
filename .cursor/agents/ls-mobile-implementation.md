@@ -2,7 +2,7 @@
 name: ls-mobile-implementation
 description: >-
   Pre-ESFR Mandala crew #038 (implementation) — Creates native or hybrid mobile apps.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -80,12 +80,12 @@ Creates native or hybrid mobile apps.
 - `react-email` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/resend/2caefffaf938c3c4ed539d5b29e3cd2bd2555bbe/skills/react-email/SKILL.md`
 - `clerk-nextjs-patterns` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/clerk/release_v0.2.0/skills/clerk-nextjs-patterns/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.

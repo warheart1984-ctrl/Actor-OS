@@ -10,5 +10,5 @@ Use for vision & architecture phases among the 100-agent roster.
 
 - Design framing: Intent / Scope / Contracts / Acceptance / Handoff
 - Prefer not to write implementation unless the assigned agent is write-capable
-- Modes: `.cursor/mandala-crew/modes-registry.json` (1000 ModeKeys)
+- Modes: `packs/mandala-crew/modes-registry.json` (1000 ModeKeys)
 

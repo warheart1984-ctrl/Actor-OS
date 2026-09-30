@@ -10,7 +10,7 @@ import { buildServices } from '../services.js';
 
 const packRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  '../../../.cursor/mandala-crew',
+  '../../../packs/mandala-crew',
 );
 
 describe('RTS catalog and sessions', () => {

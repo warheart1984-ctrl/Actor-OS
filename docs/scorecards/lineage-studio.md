@@ -13,7 +13,7 @@
 
 | Slice | Rating | Evidence |
 |---|---|---|
-| Data / import | Declared operable | `rts-skill-catalog.json`, `.cursor/mandala-crew/rts/*`, `GET /api/rts/catalog` |
+| Data / import | Declared operable | `rts-skill-catalog.json`, `packs/mandala-crew/rts/*`, `GET /api/rts/catalog` |
 | Standalone sim | Local operator MVP | In-memory sessions, mission→crew plan, `rts-app` |
 | Studio overlay | Local operator MVP | LineageStudio `rts` view reuses session API |
 | Commercial game / multiplayer | Not claimed | — |

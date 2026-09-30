@@ -158,7 +158,7 @@ function defaultPackRoot(): string {
   const here = path.dirname(fileURLToPath(import.meta.url));
   const candidates = [
     path.resolve(here, '../mandala-crew'),
-    path.resolve(here, '../../../.cursor/mandala-crew'),
+    path.resolve(here, '../../../packs/mandala-crew'),
   ];
   for (const candidate of candidates) {
     if (packLooksValid(candidate)) return candidate;

@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '../..');
-const PACK = path.join(ROOT, '.cursor', 'mandala-crew');
+const PACK = path.join(ROOT, 'packs', 'mandala-crew');
 const RTS = path.join(PACK, 'rts');
 
 function assert(cond, msg) {

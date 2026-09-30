@@ -10,7 +10,7 @@ ModeKey = crewMode × actorMode × stance
 
 Shared registry — **not** 100×1000 markdown files.
 
-Registry: `.cursor/mandala-crew/modes-registry.json`  
+Registry: `packs/mandala-crew/modes-registry.json`  
 Count at generation: **1000**
 
 ## Auto-apply status

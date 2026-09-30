@@ -2,7 +2,7 @@
 name: ls-compliance-testing
 description: >-
   Pre-ESFR Mandala crew #063 (testing) — Verifies regulatory and policy adherence.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -70,12 +70,12 @@ Verifies regulatory and policy adherence.
 - `adding-dbt-unit-test` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/dbt/a21c3538ee3cc4b5a38b2da33522d11077998f30/skills/adding-dbt-unit-test/SKILL.md`
 - `go-testing` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/encore/ded36605dbd2d6b1459f66c95843f927892ff9a0/skills/go-testing/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.

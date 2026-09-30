@@ -82,7 +82,7 @@ See [`backend/.env.example`](backend/.env.example). Any provider left blank fall
 | `OLLAMA_ENABLED=true` | Talk to a local Ollama daemon |
 | `DATABASE_DRIVER=sqlite\|postgres` | Storage backend (default `sqlite`) |
 | `DATABASE_URL` | Required when `DATABASE_DRIVER=postgres` |
-| `MANDALA_CREW_ROOT` | Optional override for crew pack path (default: `backend/dist/mandala-crew` after build, else `.cursor/mandala-crew`) |
+| `MANDALA_CREW_ROOT` | Optional override for crew pack path (default: `backend/dist/mandala-crew` after build, else `packs/mandala-crew`) |
 
 ## Docker / Postgres (optional)
 

@@ -102,7 +102,7 @@ function defaultCrewPackRoot(): string {
   const here = path.dirname(fileURLToPath(import.meta.url));
   const candidates = [
     path.resolve(here, '../mandala-crew'),
-    path.resolve(here, '../../../.cursor/mandala-crew'),
+    path.resolve(here, '../../../packs/mandala-crew'),
   ];
   for (const candidate of candidates) {
     if (fs.existsSync(path.join(candidate, 'rts', 'structures.json'))) return candidate;

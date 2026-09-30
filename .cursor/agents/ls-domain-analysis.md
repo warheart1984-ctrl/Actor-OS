@@ -2,7 +2,7 @@
 name: ls-domain-analysis
 description: >-
   Pre-ESFR Mandala crew #003 (vision) — Builds a conceptual map of the problem space.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -46,12 +46,12 @@ Builds a conceptual map of the problem space.
 - `parallel-deep-research` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/parallel/db86c809e2634744f8d968967449b984a71e2e04/skills/parallel-deep-research/SKILL.md`
 - `tavily-research` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/tavily/b971db016d23a908fe7061fdeb213f9b6cb4d771/skills/tavily-research/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.

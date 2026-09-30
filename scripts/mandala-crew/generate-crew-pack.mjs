@@ -22,7 +22,7 @@ const OUT = {
   agents: path.join(ROOT, '.cursor', 'agents'),
   skills: path.join(ROOT, '.cursor', 'skills'),
   rules: path.join(ROOT, '.cursor', 'rules'),
-  crew: path.join(ROOT, '.cursor', 'mandala-crew'),
+  crew: path.join(ROOT, 'packs', 'mandala-crew'),
   docs: path.join(ROOT, 'docs', 'mandala-crew'),
   commercial: path.join(ROOT, 'docs', 'commercial'),
 };
@@ -253,7 +253,7 @@ function agentBody(a, vendorResolved) {
 name: ${a.id}
 description: >-
   Pre-ESFR Mandala crew #${String(a.pipelineOrder).padStart(3, '0')} (${a.phase}) — ${a.description}
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -281,12 +281,12 @@ ${skillLines || '_none resolved — see vendor-skills-map.json_'}
 ### Resolved SKILL.md paths (when discovered on this host)
 ${pathLines || '_paths unavailable offline — use GET /api/crew/skills/:name in the product_'}
 
-Full obtainable catalog: \`.cursor/mandala-crew/vendor-skills-all-names.json\`.  
+Full obtainable catalog: \`packs/mandala-crew/vendor-skills-all-names.json\`.  
 Product API can return path metadata; Cursor still executes by opening \`SKILL.md\`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from \`.cursor/mandala-crew/modes-registry.json\` (20×10×5 = **1000**).  
+Select one ModeKey from \`packs/mandala-crew/modes-registry.json\` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule \`mandala-modekey-auto-apply\`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.
@@ -404,7 +404,7 @@ Use for vision & architecture phases among the 100-agent roster.
 
 - Design framing: Intent / Scope / Contracts / Acceptance / Handoff
 - Prefer not to write implementation unless the assigned agent is write-capable
-- Modes: \`.cursor/mandala-crew/modes-registry.json\` (1000 ModeKeys)
+- Modes: \`packs/mandala-crew/modes-registry.json\` (1000 ModeKeys)
 `,
   );
   writeRoleSkill(
@@ -503,10 +503,10 @@ Orchestrate the **100 pre-ESFR agents** by phase, then **ESFR** (#101).
 
 | Artifact | Path |
 |----------|------|
-| Agent roster | \`.cursor/mandala-crew/agents.yaml\` |
-| Modes (1000) | \`.cursor/mandala-crew/modes-registry.json\` |
-| Vendor map | \`.cursor/mandala-crew/vendor-skills-map.json\` |
-| Vendor paths | \`.cursor/mandala-crew/vendor-skills-paths.json\` |
+| Agent roster | \`packs/mandala-crew/agents.yaml\` |
+| Modes (1000) | \`packs/mandala-crew/modes-registry.json\` |
+| Vendor map | \`packs/mandala-crew/vendor-skills-map.json\` |
+| Vendor paths | \`packs/mandala-crew/vendor-skills-paths.json\` |
 `,
   );
 }
@@ -636,7 +636,7 @@ function writeYamlRoster() {
   lines.push('modes:');
   lines.push('  native_named: 60');
   lines.push('  compositional_per_agent: 1000');
-  lines.push('  registry: .cursor/mandala-crew/modes-registry.json');
+  lines.push('  registry: packs/mandala-crew/modes-registry.json');
   lines.push('  formula_note: "Shared 1000 ModeKeys for every agent; not 100×1000 files"');
   return `${lines.join('\n')}\n`;
 }
@@ -742,7 +742,7 @@ ModeKey = crewMode × actorMode × stance
 
 Shared registry — **not** 100×1000 markdown files.
 
-Registry: \`.cursor/mandala-crew/modes-registry.json\`  
+Registry: \`packs/mandala-crew/modes-registry.json\`  
 Count at generation: **${modes.compositional.count}**
 
 ## Auto-apply status
@@ -763,9 +763,9 @@ Count at generation: **${modes.compositional.count}**
 Discovered **${vendor.count}** \`SKILL.md\` files (**${vendor.unique}** unique names) on this host.
 
 Mapped onto the 100+ESFR+foreman agents: **${allVendorNames.size}** unique preferred names  
-(\`.cursor/mandala-crew/vendor-skills-map.json\`).
+(\`packs/mandala-crew/vendor-skills-map.json\`).
 
-Path index: \`.cursor/mandala-crew/vendor-skills-paths.json\`  
+Path index: \`packs/mandala-crew/vendor-skills-paths.json\`  
 Product resolve: \`GET /api/crew/skills/:name\` returns \`paths\` + \`loadHint\`.
 
 **Honest limit:** the product does not execute vendor skills inside Node; Cursor still opens \`SKILL.md\`.
@@ -814,7 +814,7 @@ When the user asks for Mandala crew, multi-agent Vision→Stewardship, or ESFR:
 1. Load \`.cursor/skills/ls-crew/SKILL.md\` (foreman — **not** one of the 100)
 2. Use the **100** agents under \`.cursor/agents/ls-*.md\` (exclude \`ls-esfr\` and treat \`ls-crew-foreman\` as orchestrator)
 3. Run **ESFR** (\`ls-esfr\`) only after readiness evidence — pipeline **#101**
-4. Modes: pick from \`.cursor/mandala-crew/modes-registry.json\` (1000 ModeKeys)
+4. Modes: pick from \`packs/mandala-crew/modes-registry.json\` (1000 ModeKeys)
 5. Prefer vendor skills listed on each agent; resolve paths via pack index / API when available
 6. Stay Drive-G-1 honest
 `,

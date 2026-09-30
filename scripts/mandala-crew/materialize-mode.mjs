@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const reg = JSON.parse(fs.readFileSync(path.join(root, ".cursor/mandala-crew/modes-registry.json"), "utf8"));
+const reg = JSON.parse(fs.readFileSync(path.join(root, "packs/mandala-crew/modes-registry.json"), "utf8"));
 const key = process.argv[2];
 if (!key) {
   console.error("Usage: node materialize-mode.mjs <modeKey>");
@@ -14,7 +14,7 @@ if (!mode) {
   console.error("Mode not found:", key);
   process.exit(2);
 }
-const outDir = path.join(root, ".cursor/mandala-crew/mode-cards");
+const outDir = path.join(root, "packs/mandala-crew/mode-cards");
 fs.mkdirSync(outDir, { recursive: true });
 const out = path.join(outDir, `${mode.key}.md`);
 fs.writeFileSync(out, `# Mode: ${mode.label}

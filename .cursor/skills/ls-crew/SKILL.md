@@ -39,8 +39,8 @@ Orchestrate the **100 pre-ESFR agents** by phase, then **ESFR** (#101).
 
 | Artifact | Path |
 |----------|------|
-| Agent roster | `.cursor/mandala-crew/agents.yaml` |
-| Modes (1000) | `.cursor/mandala-crew/modes-registry.json` |
-| Vendor map | `.cursor/mandala-crew/vendor-skills-map.json` |
-| Vendor paths | `.cursor/mandala-crew/vendor-skills-paths.json` |
+| Agent roster | `packs/mandala-crew/agents.yaml` |
+| Modes (1000) | `packs/mandala-crew/modes-registry.json` |
+| Vendor map | `packs/mandala-crew/vendor-skills-map.json` |
+| Vendor paths | `packs/mandala-crew/vendor-skills-paths.json` |
 

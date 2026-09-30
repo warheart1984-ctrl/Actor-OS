@@ -856,5 +856,5 @@ esfr:
 modes:
   native_named: 60
   compositional_per_agent: 1000
-  registry: .cursor/mandala-crew/modes-registry.json
+  registry: packs/mandala-crew/modes-registry.json
   formula_note: "Shared 1000 ModeKeys for every agent; not 100×1000 files"

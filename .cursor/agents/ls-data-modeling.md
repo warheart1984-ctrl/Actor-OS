@@ -2,7 +2,7 @@
 name: ls-data-modeling
 description: >-
   Pre-ESFR Mandala crew #014 (architecture) — Designs schemas, relationships, and storage strategies.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -44,12 +44,12 @@ Designs schemas, relationships, and storage strategies.
 - `deploy` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/deploy-on-aws/7a17df718d26f07414b876e77a7480fa25089b08/skills/deploy/SKILL.md`
 - `security` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/elastic/f25405c0b7b808fcf320c97889d905ae26152f07/skills/security/alert-triage/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.

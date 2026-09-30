@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const backendRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const repoRoot = dirname(backendRoot);
-const source = join(repoRoot, '.cursor', 'mandala-crew');
+const source = join(repoRoot, 'packs', 'mandala-crew');
 const target = join(backendRoot, 'dist', 'mandala-crew');
 
 const required = [
@@ -40,7 +40,7 @@ try {
   await rm(rtsTarget, { recursive: true, force: true });
   await cp(rtsSource, rtsTarget, { recursive: true });
 } catch {
-  console.warn('RTS pack folder missing — catalog endpoints will fail until .cursor/mandala-crew/rts exists');
+  console.warn('RTS pack folder missing — catalog endpoints will fail until packs/mandala-crew/rts exists');
 }
 
 // Optional mode-cards for materialize writes when running from dist.

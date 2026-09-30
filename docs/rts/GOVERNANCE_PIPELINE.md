@@ -21,7 +21,7 @@ Brief (operator)
 
 | RTS step | Product evidence |
 |----------|------------------|
-| Structures / units / drones | `.cursor/mandala-crew/rts/*.json` + `GET /api/rts/catalog` |
+| Structures / units / drones | `packs/mandala-crew/rts/*.json` + `GET /api/rts/catalog` |
 | Skills tech tree | `rts-skill-catalog.json` (vendor + cursor + ls-role) |
 | Lenses | ModeKeys in `modes-registry.json` (`crew × actor × stance`) |
 | Mission | `POST /api/rts/sessions/:id/action` `{ type: "start_mission" }` → `MandalaCrewEngine.plan` |

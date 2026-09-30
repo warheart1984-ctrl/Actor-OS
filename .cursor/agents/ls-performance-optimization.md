@@ -2,7 +2,7 @@
 name: ls-performance-optimization
 description: >-
   Pre-ESFR Mandala crew #045 (implementation) — Tunes hot paths and resource usage.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -80,12 +80,12 @@ Tunes hot paths and resource usage.
 - `setup-react-app` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/phantom-connect/4162aa88131f0a6b6f0c050b176736f0773d038c/skills/setup-react-app/SKILL.md`
 - `setup-react-native-app` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/phantom-connect/4162aa88131f0a6b6f0c050b176736f0773d038c/skills/setup-react-native-app/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.

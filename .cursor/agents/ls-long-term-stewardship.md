@@ -2,7 +2,7 @@
 name: ls-long-term-stewardship
 description: >-
   Pre-ESFR Mandala crew #100 (operations) — Holds responsibility for the system’s legacy.
-  Modes: 1000 compositional ModeKeys via .cursor/mandala-crew/modes-registry.json.
+  Modes: 1000 compositional ModeKeys via packs/mandala-crew/modes-registry.json.
 model: inherit
 ---
 
@@ -80,12 +80,12 @@ Holds responsibility for the system’s legacy.
 - `revx-monitor` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/revolut-x/5b0370bf406f6d010f100a66c37449d319b4a3e0/plugins/revolut-x/skills/revx-monitor/SKILL.md`
 - `sentry-setup-ai-monitoring` → `C:/Users/My PC/.cursor/plugins/cache/cursor-public/sentry/4aa3696cb5e7ed545b59f069afcf81a30fcbaf86/skills/sentry-setup-ai-monitoring/SKILL.md`
 
-Full obtainable catalog: `.cursor/mandala-crew/vendor-skills-all-names.json`.  
+Full obtainable catalog: `packs/mandala-crew/vendor-skills-all-names.json`.  
 Product API can return path metadata; Cursor still executes by opening `SKILL.md`.
 
 ## Modes (1000 per agent)
 
-Select one ModeKey from `.cursor/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
+Select one ModeKey from `packs/mandala-crew/modes-registry.json` (20×10×5 = **1000**).  
 When an invoke brief includes a ModeKey, apply it as a lens (see rule `mandala-modekey-auto-apply`).
 
 Precedence: **role bans > Constitution > Evidence > Profile > Mode**.
