@@ -2,9 +2,9 @@
 
 Lineage-driven multi-model **agent operating system**. Agents own role and lineage; connectors and models are swappable bindings. Tasks start as a TaskSpec, then route through an agent — not a chat transcript.
 
-## What works now
+## Core: what works now
 
-Verified against the code in this repository:
+The lineage/agent core is the product. Verified against the code in this repository:
 
 | Capability | Evidence |
 |---|---|
@@ -20,17 +20,24 @@ Verified against the code in this repository:
 | Mock fallback when API keys are missing | `MockConnector` + `buildConnectorRegistry` |
 | SQLite default; optional Postgres | `DATABASE_DRIVER`, `docker-compose.yml` |
 | Three-panel studio UI + Operator Console + Agent Graph | `frontend/src/` |
-| Mandala 100+ESFR crew pack load, skill catalog/paths, foreman plans | `MandalaCrewEngine`, `/api/crew`, Mandala Crew UI — see `docs/mandala-crew/` |
-| Business RTS catalog + in-memory session sim (missions → crew plan) | `RtsEngine`, `/api/rts`, `rts-app`, Business RTS tab — see `docs/rts/` |
 | Agent settings (binding, temperature, max tokens, role, system) | `ProfileSettingsPanel` + `PATCH /api/profiles/:id` |
 | Optional Electron shell | `desktop/` |
+
+## Experimental
+
+Built on top of the core, working locally, but not the headline and subject to change or removal. See [`experiments/`](experiments/README.md).
+
+| Experiment | Evidence |
+|---|---|
+| Mandala 100+ESFR crew: pack load, skill catalog/paths, foreman plans | `MandalaCrewEngine`, `/api/crew`, Mandala Crew UI, pack in `packs/mandala-crew/` — see `docs/mandala-crew/` |
+| Business RTS: catalog + in-memory session sim (missions → crew plan) | `RtsEngine`, `/api/rts`, Business RTS tab, standalone `experiments/rts-app` — see `docs/rts/` |
 
 ## Quick start (no Docker)
 
 Requires Node.js **23.4+** (uses the built-in `node:sqlite` module; Node 24 is fine).
 
 ```bash
-cd G:\LineageStudio
+cd LineageStudio
 npm install
 cp backend/.env.example backend/.env   # optional — empty keys use mock connectors
 npm run dev
@@ -38,7 +45,7 @@ npm run dev
 
 - API: http://localhost:4000
 - UI: http://localhost:3000
-- Business RTS (standalone): `npm run dev:rts` → http://localhost:3001
+- Business RTS (experimental, standalone): `npm run dev:rts` → http://localhost:3001
 - WebSocket: `ws://localhost:4000/ws` (proxied through Vite as `/ws`)
 
 ### Smoke path
@@ -48,8 +55,8 @@ npm run dev
 3. In **Chain builder**, add Research then Summary and click **Run chain** — lineage shows ordered `chain_step` tags.
 4. Use **Send to another agent** for a handoff — lineage shows an `interaction` and a reply artifact.
 5. Open **Operator console** for cross-agent replay; **Agent graph** for message edges.
-6. Open **Mandala crew** to inspect the 100+ESFR roster (6 phases), search the vendor skill catalog, pick a ModeKey, and generate a foreman invoke brief (ESFR #101 last).
-7. Open **Business RTS** to build structures, train units, deploy drones, and brief the foreman (mission → Mandala plan + ESFR).
+6. *(Experimental)* Open **Mandala crew** to inspect the 100+ESFR roster (6 phases), search the vendor skill catalog, pick a ModeKey, and generate a foreman invoke brief (ESFR #101 last).
+7. *(Experimental)* Open **Business RTS** to build structures, train units, deploy drones, and brief the foreman (mission → Mandala plan + ESFR).
 8. In agent settings, swap connector/model — agent id and lineage stay put.
 
 Or run the scripted smoke:
@@ -111,6 +118,8 @@ backend/     Express API, engines, connectors, SQLite/Postgres
 frontend/    Vite + React three-panel studio
 desktop/     Optional Electron shell
 docs/        Specs that match what the code implements
+packs/       Runtime data packs (Mandala crew pack)
+experiments/ Experimental apps built on the core (rts-app)
 ```
 
 ## Maturity (five dimensions)

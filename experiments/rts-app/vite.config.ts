@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@ls-rts': path.resolve(root, '../frontend/src/rts'),
+      '@ls-rts': path.resolve(root, '../../frontend/src/rts'),
     },
   },
   server: {

@@ -12,8 +12,8 @@
     "resolveJsonModule": true,
     "types": ["vite/client"],
     "paths": {
-      "@ls-rts/*": ["../frontend/src/rts/*"]
+      "@ls-rts/*": ["../../frontend/src/rts/*"]
     }
   },
-  "include": ["src", "../frontend/src/rts"]
+  "include": ["src", "../../frontend/src/rts"]
 }

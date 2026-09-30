@@ -6,16 +6,16 @@
   "workspaces": [
     "backend",
     "frontend",
-    "rts-app"
+    "experiments/rts-app"
   ],
   "scripts": {
     "dev": "concurrently -n backend,frontend -c blue,magenta \"npm:dev:backend\" \"npm:dev:frontend\"",
     "dev:backend": "npm --workspace backend run dev",
     "dev:frontend": "npm --workspace frontend run dev",
-    "dev:rts": "concurrently -n backend,rts -c blue,green \"npm:dev:backend\" \"npm --workspace rts-app run dev\"",
-    "build": "npm --workspace backend run build && npm --workspace frontend run build && npm --workspace rts-app run build",
+    "dev:rts": "concurrently -n backend,rts -c blue,green \"npm:dev:backend\" \"npm --workspace experiments/rts-app run dev\"",
+    "build": "npm --workspace backend run build && npm --workspace frontend run build && npm --workspace experiments/rts-app run build",
     "test": "npm --workspace backend run test",
-    "typecheck": "npm --workspace backend run typecheck && npm --workspace frontend run typecheck && npm --workspace rts-app run typecheck",
+    "typecheck": "npm --workspace backend run typecheck && npm --workspace frontend run typecheck && npm --workspace experiments/rts-app run typecheck",
     "seed": "npm --workspace backend run seed",
     "crew:smoke": "node scripts/mandala-crew/smoke-crew.mjs",
     "crew:generate": "node scripts/mandala-crew/generate-crew-pack.mjs",

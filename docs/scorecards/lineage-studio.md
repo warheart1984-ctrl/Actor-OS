@@ -5,7 +5,7 @@
 |---|---|---|---|
 | Constitutional model | Early | operators | Lineage + evidence hashes (`Evidence.ts`, `LineageEngine`); no constitutional runtime gates |
 | Governance methodology | Early | operators | Docs evidence-bound (Drive-G-1); Mandala 100-agent crew + ESFR #101 as **declared** final gate in plans — not an automated promotion enforcer |
-| Reference implementation | Working local MVP | operators | Backend engines, connectors, Express API, React studio, Mandala crew runtime (`MandalaCrewEngine`, `/api/crew`, Mandala Crew UI); Business RTS pack + session API (`RtsEngine`, `/api/rts`, `rts-app`) — `npm run dev` / `npm test` / `npm run crew:smoke` / `npm run rts:smoke` |
+| Reference implementation | Working local MVP | operators | Backend engines, connectors, Express API, React studio, Mandala crew runtime (`MandalaCrewEngine`, `/api/crew`, Mandala Crew UI); Business RTS pack + session API (`RtsEngine`, `/api/rts`, `experiments/rts-app`) — `npm run dev` / `npm test` / `npm run crew:smoke` / `npm run rts:smoke` |
 | Platform engineering | Early | operators | SQLite default; optional Docker/Postgres compose; no CI deploy pipeline in-repo |
 | Commercial operations | Early starter | operators | Thin checklist only — `docs/commercial/OPS_STARTER.md`; **no** signup, billing, or self-serve |
 
@@ -14,7 +14,7 @@
 | Slice | Rating | Evidence |
 |---|---|---|
 | Data / import | Declared operable | `rts-skill-catalog.json`, `packs/mandala-crew/rts/*`, `GET /api/rts/catalog` |
-| Standalone sim | Local operator MVP | In-memory sessions, mission→crew plan, `rts-app` |
+| Standalone sim | Local operator MVP | In-memory sessions, mission→crew plan, `experiments/rts-app` |
 | Studio overlay | Local operator MVP | LineageStudio `rts` view reuses session API |
 | Commercial game / multiplayer | Not claimed | — |
 
