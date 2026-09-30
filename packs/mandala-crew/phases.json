@@ -1,0 +1,53 @@
+{
+  "count": 6,
+  "phases": [
+    {
+      "id": "vision",
+      "name": "Vision & Discovery",
+      "orderStart": 1,
+      "orderEnd": 10,
+      "roleSkill": "ls-architect",
+      "family": "vision"
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture & Specification",
+      "orderStart": 11,
+      "orderEnd": 25,
+      "roleSkill": "ls-architect",
+      "family": "architecture"
+    },
+    {
+      "id": "design",
+      "name": "Design & UX",
+      "orderStart": 26,
+      "orderEnd": 35,
+      "roleSkill": "ls-builder",
+      "family": "design"
+    },
+    {
+      "id": "implementation",
+      "name": "Implementation & Coding",
+      "orderStart": 36,
+      "orderEnd": 55,
+      "roleSkill": "ls-coding",
+      "family": "implementation"
+    },
+    {
+      "id": "testing",
+      "name": "Testing & Verification",
+      "orderStart": 56,
+      "orderEnd": 75,
+      "roleSkill": "ls-inspector",
+      "family": "testing"
+    },
+    {
+      "id": "operations",
+      "name": "Deployment, Operations & Evolution",
+      "orderStart": 76,
+      "orderEnd": 100,
+      "roleSkill": "ls-implementor",
+      "family": "operations"
+    }
+  ]
+}

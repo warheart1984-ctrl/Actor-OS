@@ -4,12 +4,18 @@ import type {
   AgentSendResult,
   Artifact,
   ChainResult,
+  CrewAgent,
+  CrewAgentDetail,
+  CrewPlan,
+  CrewStatus,
   Health,
   LineageEvent,
+  ModeEntry,
   Profile,
   ProfileSettings,
   RunResult,
   Task,
+  VendorSkillHit,
 } from '../types';
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
@@ -84,4 +90,52 @@ export const api = {
   agentGraph: () => request<AgentGraph>('/agents/graph'),
   agentMessages: (a: string, b: string) =>
     request<AgentMessage[]>(`/agents/messages?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`),
+
+  crewStatus: () => request<CrewStatus>('/crew'),
+  crewAgents: () =>
+    request<{ preEsfrCount: number; esfr: { id: string; order: number }; agents: CrewAgent[] }>(
+      '/crew/agents',
+    ),
+  crewAgent: (id: string) => request<CrewAgentDetail>(`/crew/agents/${encodeURIComponent(id)}`),
+  crewModes: (opts?: { q?: string; limit?: number; offset?: number }) => {
+    const params = new URLSearchParams();
+    if (opts?.q) params.set('q', opts.q);
+    if (opts?.limit !== undefined) params.set('limit', String(opts.limit));
+    if (opts?.offset !== undefined) params.set('offset', String(opts.offset));
+    const qs = params.toString();
+    return request<{ count: number; total: number; items: ModeEntry[] }>(
+      `/crew/modes${qs ? `?${qs}` : ''}`,
+    );
+  },
+  crewSkills: (opts?: {
+    q?: string;
+    preferredOnly?: boolean;
+    agentId?: string;
+    limit?: number;
+    offset?: number;
+  }) => {
+    const params = new URLSearchParams();
+    if (opts?.q) params.set('q', opts.q);
+    if (opts?.preferredOnly) params.set('preferredOnly', 'true');
+    if (opts?.agentId) params.set('agentId', opts.agentId);
+    if (opts?.limit !== undefined) params.set('limit', String(opts.limit));
+    if (opts?.offset !== undefined) params.set('offset', String(opts.offset));
+    const qs = params.toString();
+    return request<{
+      catalogCount: number;
+      preferredUnique: number;
+      total: number;
+      items: VendorSkillHit[];
+    }>(`/crew/skills${qs ? `?${qs}` : ''}`);
+  },
+  crewPlan: (input: {
+    goal: string;
+    modeKey?: string;
+    families?: string[];
+    phases?: string[];
+    agentIds?: string[];
+    skillNames?: string[];
+    includeEsfr?: boolean;
+    compact?: boolean;
+  }) => post<CrewPlan>('/crew/plan', input),
 };

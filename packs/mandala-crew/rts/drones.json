@@ -1,0 +1,78 @@
+{
+  "status": "declared",
+  "count": 8,
+  "drones": [
+    {
+      "id": "build-drone",
+      "name": "Build Drone",
+      "description": "Applies approved implementation work under Builder/Architect command.",
+      "cooldownTicks": 2,
+      "deployCost": { "compute": 4, "time": 2, "budget": 5 },
+      "commandedBy": ["builder", "architect"],
+      "actions": ["implement", "scaffold"]
+    },
+    {
+      "id": "test-drone",
+      "name": "Test Drone",
+      "description": "Runs verification sweeps; feeds Evidence meter.",
+      "cooldownTicks": 2,
+      "deployCost": { "compute": 5, "time": 2, "budget": 4 },
+      "commandedBy": ["verifier", "librarian"],
+      "actions": ["test", "assert"]
+    },
+    {
+      "id": "deploy-drone",
+      "name": "Deploy Drone",
+      "description": "Cuts over releases under Operator command.",
+      "cooldownTicks": 4,
+      "deployCost": { "compute": 8, "time": 3, "budget": 10, "risk": 3 },
+      "commandedBy": ["operator"],
+      "actions": ["deploy", "rollback"]
+    },
+    {
+      "id": "infra-drone",
+      "name": "Infra Drone",
+      "description": "Platform and infra chores for Ops/Guardian.",
+      "cooldownTicks": 3,
+      "deployCost": { "compute": 6, "time": 3, "budget": 8, "storage": 2 },
+      "commandedBy": ["operator", "guardian"],
+      "actions": ["provision", "harden"]
+    },
+    {
+      "id": "monitor-drone",
+      "name": "Monitor Drone",
+      "description": "Watches signals; raises incidents as battles.",
+      "cooldownTicks": 1,
+      "deployCost": { "compute": 3, "time": 1, "budget": 3 },
+      "commandedBy": ["watcher", "responder", "guardian", "operator", "auditor"],
+      "actions": ["watch", "alert"]
+    },
+    {
+      "id": "fix-drone",
+      "name": "Fix Drone",
+      "description": "Hotfix worker for incident battles.",
+      "cooldownTicks": 2,
+      "deployCost": { "compute": 5, "time": 2, "budget": 6, "attention": 4 },
+      "commandedBy": ["responder"],
+      "actions": ["hotfix", "mitigate"]
+    },
+    {
+      "id": "refactor-drone",
+      "name": "Refactor Drone",
+      "description": "Safe structure improvements under Architect/Builder.",
+      "cooldownTicks": 3,
+      "deployCost": { "compute": 5, "time": 3, "budget": 5, "attention": 3 },
+      "commandedBy": ["architect", "builder"],
+      "actions": ["refactor", "debt-cut"]
+    },
+    {
+      "id": "data-drone",
+      "name": "Data Drone",
+      "description": "Moves evidence and research payloads into the warehouse.",
+      "cooldownTicks": 2,
+      "deployCost": { "compute": 3, "storage": 4, "time": 2, "budget": 3 },
+      "commandedBy": ["strategist", "diplomat", "bard", "visionary", "librarian", "auditor"],
+      "actions": ["collect", "index"]
+    }
+  ]
+}

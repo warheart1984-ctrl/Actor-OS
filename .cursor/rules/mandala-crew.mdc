@@ -1,0 +1,15 @@
+---
+description: Mandala 100-agent pre-ESFR crew + ESFR #101 for LineageStudio
+alwaysApply: false
+---
+
+# Mandala Crew (LineageStudio)
+
+When the user asks for Mandala crew, multi-agent Vision→Stewardship, or ESFR:
+
+1. Load `.cursor/skills/ls-crew/SKILL.md` (foreman — **not** one of the 100)
+2. Use the **100** agents under `.cursor/agents/ls-*.md` (exclude `ls-esfr` and treat `ls-crew-foreman` as orchestrator)
+3. Run **ESFR** (`ls-esfr`) only after readiness evidence — pipeline **#101**
+4. Modes: pick from `packs/mandala-crew/modes-registry.json` (1000 ModeKeys)
+5. Prefer vendor skills listed on each agent; resolve paths via pack index / API when available
+6. Stay Drive-G-1 honest
