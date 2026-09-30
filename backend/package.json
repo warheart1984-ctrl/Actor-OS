@@ -6,7 +6,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc -p tsconfig.json && node scripts/copy-sql.mjs",
+    "build": "tsc -p tsconfig.json && node scripts/copy-sql.mjs && node scripts/copy-crew-pack.mjs",
     "start": "node dist/server.js",
     "seed": "tsx src/db/seed.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",

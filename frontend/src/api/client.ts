@@ -4,19 +4,57 @@ import type {
   AgentSendResult,
   Artifact,
   ChainResult,
+  CrewAgent,
+  CrewAgentDetail,
+  CrewPlan,
+  CrewStatus,
   Health,
   LineageEvent,
+  ModeEntry,
+  PipelineDefinition,
+  PipelineRunResult,
   Profile,
   ProfileSettings,
   RunResult,
   Task,
+  VendorSkillHit,
 } from '../types';
 
+const TOKEN_KEY = 'lineage.apiToken';
+
+/** Fired when the API answers 401, so the shell can ask for a token. */
+export const AUTH_REQUIRED_EVENT = 'lineage:auth-required';
+
+export function getApiToken(): string | null {
+  try {
+    return window.localStorage.getItem(TOKEN_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function setApiToken(token: string | null): void {
+  try {
+    if (token) window.localStorage.setItem(TOKEN_KEY, token);
+    else window.localStorage.removeItem(TOKEN_KEY);
+  } catch {
+    // Storage can be unavailable (private mode); the token then lasts one request.
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = getApiToken();
   const response = await fetch(`/api${path}`, {
     ...init,
-    headers: { 'Content-Type': 'application/json', ...(init?.headers ?? {}) },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(init?.headers ?? {}),
+    },
   });
+  if (response.status === 401) {
+    window.dispatchEvent(new Event(AUTH_REQUIRED_EVENT));
+  }
   if (!response.ok) {
     const body = (await response.json().catch(() => ({ error: response.statusText }))) as {
       error?: string;
@@ -65,6 +103,12 @@ export const api = {
   runTask: (id: string) => post<RunResult>(`/tasks/${id}/run`),
   runChain: (id: string, steps: Array<{ agentId: string; input?: string }>) =>
     post<ChainResult>(`/tasks/${id}/chain`, { steps }),
+  listPipelines: () => request<PipelineDefinition[]>('/pipelines'),
+  runPipeline: (
+    id: string,
+    input: { title: string; input: string; must_include?: string[]; success_criteria?: string[] },
+  ) => post<PipelineRunResult>(`/pipelines/${encodeURIComponent(id)}/run`, input),
+
   taskLineage: (id: string) => request<LineageEvent[]>(`/tasks/${id}/lineage`),
   taskArtifacts: (id: string) => request<Artifact[]>(`/tasks/${id}/artifacts`),
   taskMessages: (id: string) => request<AgentMessage[]>(`/tasks/${id}/messages`),
@@ -84,4 +128,52 @@ export const api = {
   agentGraph: () => request<AgentGraph>('/agents/graph'),
   agentMessages: (a: string, b: string) =>
     request<AgentMessage[]>(`/agents/messages?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`),
+
+  crewStatus: () => request<CrewStatus>('/crew'),
+  crewAgents: () =>
+    request<{ preEsfrCount: number; esfr: { id: string; order: number }; agents: CrewAgent[] }>(
+      '/crew/agents',
+    ),
+  crewAgent: (id: string) => request<CrewAgentDetail>(`/crew/agents/${encodeURIComponent(id)}`),
+  crewModes: (opts?: { q?: string; limit?: number; offset?: number }) => {
+    const params = new URLSearchParams();
+    if (opts?.q) params.set('q', opts.q);
+    if (opts?.limit !== undefined) params.set('limit', String(opts.limit));
+    if (opts?.offset !== undefined) params.set('offset', String(opts.offset));
+    const qs = params.toString();
+    return request<{ count: number; total: number; items: ModeEntry[] }>(
+      `/crew/modes${qs ? `?${qs}` : ''}`,
+    );
+  },
+  crewSkills: (opts?: {
+    q?: string;
+    preferredOnly?: boolean;
+    agentId?: string;
+    limit?: number;
+    offset?: number;
+  }) => {
+    const params = new URLSearchParams();
+    if (opts?.q) params.set('q', opts.q);
+    if (opts?.preferredOnly) params.set('preferredOnly', 'true');
+    if (opts?.agentId) params.set('agentId', opts.agentId);
+    if (opts?.limit !== undefined) params.set('limit', String(opts.limit));
+    if (opts?.offset !== undefined) params.set('offset', String(opts.offset));
+    const qs = params.toString();
+    return request<{
+      catalogCount: number;
+      preferredUnique: number;
+      total: number;
+      items: VendorSkillHit[];
+    }>(`/crew/skills${qs ? `?${qs}` : ''}`);
+  },
+  crewPlan: (input: {
+    goal: string;
+    modeKey?: string;
+    families?: string[];
+    phases?: string[];
+    agentIds?: string[];
+    skillNames?: string[];
+    includeEsfr?: boolean;
+    compact?: boolean;
+  }) => post<CrewPlan>('/crew/plan', input),
 };

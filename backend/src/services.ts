@@ -1,5 +1,9 @@
 import { AgentCollaborationEngine } from './core/AgentCollaborationEngine.js';
+import { CrewPipelineRunner } from './core/CrewPipeline.js';
 import { LineageEngine } from './core/LineageEngine.js';
+import { MandalaCrewEngine } from './core/MandalaCrewEngine.js';
+import { RtsEngine } from './core/RtsEngine.js';
+import { RtsSessionEngine } from './core/RtsSessionEngine.js';
 import { TaskOrchestrator } from './core/TaskOrchestrator.js';
 import { MessageBus } from './models/MessageBus.js';
 import { ModelRouter } from './models/ModelRouter.js';
@@ -11,7 +15,11 @@ export type AppServices = {
   bus: MessageBus;
   lineage: LineageEngine;
   tasks: TaskOrchestrator;
+  pipelines: CrewPipelineRunner;
   agents: AgentCollaborationEngine;
+  crew: MandalaCrewEngine;
+  rts: RtsEngine;
+  rtsSessions: RtsSessionEngine;
 };
 
 export function buildServices(env: NodeJS.ProcessEnv = process.env): AppServices {
@@ -20,6 +28,11 @@ export function buildServices(env: NodeJS.ProcessEnv = process.env): AppServices
   const bus = new MessageBus();
   const lineage = new LineageEngine();
   const tasks = new TaskOrchestrator(router, lineage);
+  const pipelines = new CrewPipelineRunner(tasks, router, lineage);
   const agents = new AgentCollaborationEngine(bus, lineage, router);
-  return { connectors, router, bus, lineage, tasks, agents };
+  const crewRoot = env['MANDALA_CREW_ROOT']?.trim();
+  const crew = crewRoot ? new MandalaCrewEngine(crewRoot) : new MandalaCrewEngine();
+  const rts = crewRoot ? new RtsEngine(crewRoot) : new RtsEngine();
+  const rtsSessions = new RtsSessionEngine(rts, crew);
+  return { connectors, router, bus, lineage, tasks, pipelines, agents, crew, rts, rtsSessions };
 }

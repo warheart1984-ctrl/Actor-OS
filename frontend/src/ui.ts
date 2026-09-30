@@ -14,6 +14,7 @@ export const statusStyles: Record<TaskStatus, string> = {
   running: 'bg-amber-950 text-amber-200 ring-amber-800 animate-pulse',
   done: 'bg-emerald-950 text-emerald-200 ring-emerald-800',
   failed: 'bg-rose-950 text-rose-200 ring-rose-800',
+  rejected: 'bg-orange-950 text-orange-200 ring-orange-800',
 };
 
 export function providerOf(profile: { binding?: { connector: string }; model_type: string }): string {

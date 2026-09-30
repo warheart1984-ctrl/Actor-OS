@@ -1,0 +1,860 @@
+# LineageStudio Mandala crew — generated
+# 100 pre-ESFR agents; ESFR is pipeline #101 (final gate).
+# Crew Foreman (ls-crew-foreman) is orchestration-only and NOT in the 100.
+source_of_truth:
+  roster_module: scripts/mandala-crew/agents-100.mjs
+  mandala_pack: G:/Mandala Rendering Software/mandala-agent-pack
+pipeline:
+  pre_esfr_count: 100
+  esfr_slot: 101
+  esfr_counted_in_hundred: false
+  foreman_in_roster: false
+phases:
+  - id: vision
+    name: "Vision & Discovery"
+    order_start: 1
+    order_end: 10
+    family: vision
+  - id: architecture
+    name: "Architecture & Specification"
+    order_start: 11
+    order_end: 25
+    family: architecture
+  - id: design
+    name: "Design & UX"
+    order_start: 26
+    order_end: 35
+    family: design
+  - id: implementation
+    name: "Implementation & Coding"
+    order_start: 36
+    order_end: 55
+    family: implementation
+  - id: testing
+    name: "Testing & Verification"
+    order_start: 56
+    order_end: 75
+    family: testing
+  - id: operations
+    name: "Deployment, Operations & Evolution"
+    order_start: 76
+    order_end: 100
+    family: operations
+agents:
+  - id: ls-problem-discovery
+    name: "Problem Discovery Agent"
+    description: "Finds real-world problems worth solving."
+    family: vision
+    phase: vision
+    order: 1
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-problem-discovery.md
+  - id: ls-stakeholder-mapping
+    name: "Stakeholder Mapping Agent"
+    description: "Identifies who is affected and who decides."
+    family: vision
+    phase: vision
+    order: 2
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-stakeholder-mapping.md
+  - id: ls-domain-analysis
+    name: "Domain Analysis Agent"
+    description: "Builds a conceptual map of the problem space."
+    family: vision
+    phase: vision
+    order: 3
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-domain-analysis.md
+  - id: ls-user-research
+    name: "User Research Agent"
+    description: "Gathers qualitative and quantitative user evidence."
+    family: vision
+    phase: vision
+    order: 4
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-user-research.md
+  - id: ls-persona-synthesis
+    name: "Persona Synthesis Agent"
+    description: "Turns raw user data into governed personas."
+    family: vision
+    phase: vision
+    order: 5
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-persona-synthesis.md
+  - id: ls-journey-mapping
+    name: "Journey Mapping Agent"
+    description: "Models user flows and pain points."
+    family: vision
+    phase: vision
+    order: 6
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-journey-mapping.md
+  - id: ls-value-proposition
+    name: "Value Proposition Agent"
+    description: "Articulates why this software should exist."
+    family: vision
+    phase: vision
+    order: 7
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-value-proposition.md
+  - id: ls-requirements-elicitation
+    name: "Requirements Elicitation Agent"
+    description: "Captures functional and non-functional needs."
+    family: vision
+    phase: vision
+    order: 8
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-requirements-elicitation.md
+  - id: ls-risk-identification
+    name: "Risk Identification Agent"
+    description: "Surfaces technical, legal, and social risks."
+    family: vision
+    phase: vision
+    order: 9
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-risk-identification.md
+  - id: ls-feasibility-assessment
+    name: "Feasibility Assessment Agent"
+    description: "Evaluates whether the system is buildable and sustainable."
+    family: vision
+    phase: vision
+    order: 10
+    source: "lineage-100/vision"
+    cursor_agent: .cursor/agents/ls-feasibility-assessment.md
+  - id: ls-system-architecture
+    name: "System Architecture Agent"
+    description: "Designs the overall structure and boundaries."
+    family: architecture
+    phase: architecture
+    order: 11
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-system-architecture.md
+  - id: ls-domain-modeling
+    name: "Domain Modeling Agent"
+    description: "Creates entities, aggregates, and bounded contexts."
+    family: architecture
+    phase: architecture
+    order: 12
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-domain-modeling.md
+  - id: ls-api-contract-design
+    name: "API Contract Design Agent"
+    description: "Defines external and internal service contracts."
+    family: architecture
+    phase: architecture
+    order: 13
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-api-contract-design.md
+  - id: ls-data-modeling
+    name: "Data Modeling Agent"
+    description: "Designs schemas, relationships, and storage strategies."
+    family: architecture
+    phase: architecture
+    order: 14
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-data-modeling.md
+  - id: ls-security-architecture
+    name: "Security Architecture Agent"
+    description: "Embeds security principles into the design."
+    family: architecture
+    phase: architecture
+    order: 15
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-security-architecture.md
+  - id: ls-performance-modeling
+    name: "Performance Modeling Agent"
+    description: "Predicts load, latency, and throughput."
+    family: architecture
+    phase: architecture
+    order: 16
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-performance-modeling.md
+  - id: ls-scalability-planning
+    name: "Scalability Planning Agent"
+    description: "Plans horizontal/vertical scaling strategies."
+    family: architecture
+    phase: architecture
+    order: 17
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-scalability-planning.md
+  - id: ls-resilience-fault-tolerance
+    name: "Resilience & Fault‑Tolerance Agent"
+    description: "Designs for failure and recovery."
+    family: architecture
+    phase: architecture
+    order: 18
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-resilience-fault-tolerance.md
+  - id: ls-compliance-regulatory
+    name: "Compliance & Regulatory Agent"
+    description: "Aligns architecture with legal constraints."
+    family: architecture
+    phase: architecture
+    order: 19
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-compliance-regulatory.md
+  - id: ls-interface-specification
+    name: "Interface Specification Agent"
+    description: "Defines UI, CLI, and integration interfaces."
+    family: architecture
+    phase: architecture
+    order: 20
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-interface-specification.md
+  - id: ls-integration-topology
+    name: "Integration Topology Agent"
+    description: "Maps services, queues, and external systems."
+    family: architecture
+    phase: architecture
+    order: 21
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-integration-topology.md
+  - id: ls-configuration-design
+    name: "Configuration Design Agent"
+    description: "Plans configuration surfaces and defaults."
+    family: architecture
+    phase: architecture
+    order: 22
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-configuration-design.md
+  - id: ls-logging-observability-design
+    name: "Logging & Observability Design Agent"
+    description: "Specifies metrics, traces, and logs."
+    family: architecture
+    phase: architecture
+    order: 23
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-logging-observability-design.md
+  - id: ls-deployment-topology
+    name: "Deployment Topology Agent"
+    description: "Designs environments, clusters, and regions."
+    family: architecture
+    phase: architecture
+    order: 24
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-deployment-topology.md
+  - id: ls-cost-resource-modeling
+    name: "Cost & Resource Modeling Agent"
+    description: "Models compute, storage, and financial cost."
+    family: architecture
+    phase: architecture
+    order: 25
+    source: "lineage-100/architecture"
+    cursor_agent: .cursor/agents/ls-cost-resource-modeling.md
+  - id: ls-information-architecture
+    name: "Information Architecture Agent"
+    description: "Structures content and navigation."
+    family: design
+    phase: design
+    order: 26
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-information-architecture.md
+  - id: ls-interaction-design
+    name: "Interaction Design Agent"
+    description: "Designs flows, states, and transitions."
+    family: design
+    phase: design
+    order: 27
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-interaction-design.md
+  - id: ls-visual-design
+    name: "Visual Design Agent"
+    description: "Defines visual language and component styles."
+    family: design
+    phase: design
+    order: 28
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-visual-design.md
+  - id: ls-accessibility-design
+    name: "Accessibility Design Agent"
+    description: "Ensures inclusive, accessible interfaces."
+    family: design
+    phase: design
+    order: 29
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-accessibility-design.md
+  - id: ls-design-system
+    name: "Design System Agent"
+    description: "Maintains reusable UI components and patterns."
+    family: design
+    phase: design
+    order: 30
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-design-system.md
+  - id: ls-prototype-creation
+    name: "Prototype Creation Agent"
+    description: "Builds interactive prototypes for validation."
+    family: design
+    phase: design
+    order: 31
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-prototype-creation.md
+  - id: ls-usability-testing
+    name: "Usability Testing Agent"
+    description: "Tests UX with real or simulated users."
+    family: design
+    phase: design
+    order: 32
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-usability-testing.md
+  - id: ls-content-strategy
+    name: "Content Strategy Agent"
+    description: "Governs text, tone, and messaging."
+    family: design
+    phase: design
+    order: 33
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-content-strategy.md
+  - id: ls-localization-internationalization
+    name: "Localization & Internationalization Agent"
+    description: "Prepares for multiple languages and regions."
+    family: design
+    phase: design
+    order: 34
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-localization-internationalization.md
+  - id: ls-design-governance
+    name: "Design Governance Agent"
+    description: "Ensures design decisions remain coherent and documented."
+    family: design
+    phase: design
+    order: 35
+    source: "lineage-100/design"
+    cursor_agent: .cursor/agents/ls-design-governance.md
+  - id: ls-backend-implementation
+    name: "Backend Implementation Agent"
+    description: "Writes and maintains server-side logic."
+    family: implementation
+    phase: implementation
+    order: 36
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-backend-implementation.md
+  - id: ls-frontend-implementation
+    name: "Frontend Implementation Agent"
+    description: "Builds client-side applications."
+    family: implementation
+    phase: implementation
+    order: 37
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-frontend-implementation.md
+  - id: ls-mobile-implementation
+    name: "Mobile Implementation Agent"
+    description: "Creates native or hybrid mobile apps."
+    family: implementation
+    phase: implementation
+    order: 38
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-mobile-implementation.md
+  - id: ls-database-implementation
+    name: "Database Implementation Agent"
+    description: "Implements schemas, queries, and migrations."
+    family: implementation
+    phase: implementation
+    order: 39
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-database-implementation.md
+  - id: ls-infrastructure-as-code
+    name: "Infrastructure‑as‑Code Agent"
+    description: "Codifies infrastructure in declarative form."
+    family: implementation
+    phase: implementation
+    order: 40
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-infrastructure-as-code.md
+  - id: ls-configuration-management
+    name: "Configuration Management Agent"
+    description: "Manages environment and app configs."
+    family: implementation
+    phase: implementation
+    order: 41
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-configuration-management.md
+  - id: ls-code-quality
+    name: "Code Quality Agent"
+    description: "Enforces style, patterns, and cleanliness."
+    family: implementation
+    phase: implementation
+    order: 42
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-code-quality.md
+  - id: ls-static-analysis
+    name: "Static Analysis Agent"
+    description: "Runs static checks for bugs and vulnerabilities."
+    family: implementation
+    phase: implementation
+    order: 43
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-static-analysis.md
+  - id: ls-secure-coding
+    name: "Secure Coding Agent"
+    description: "Applies secure coding practices and patterns."
+    family: implementation
+    phase: implementation
+    order: 44
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-secure-coding.md
+  - id: ls-performance-optimization
+    name: "Performance Optimization Agent"
+    description: "Tunes hot paths and resource usage."
+    family: implementation
+    phase: implementation
+    order: 45
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-performance-optimization.md
+  - id: ls-refactoring
+    name: "Refactoring Agent"
+    description: "Improves structure without changing behavior."
+    family: implementation
+    phase: implementation
+    order: 46
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-refactoring.md
+  - id: ls-dependency-management
+    name: "Dependency Management Agent"
+    description: "Curates and updates third‑party libraries."
+    family: implementation
+    phase: implementation
+    order: 47
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-dependency-management.md
+  - id: ls-build-pipeline
+    name: "Build Pipeline Agent"
+    description: "Maintains CI/CD build processes."
+    family: implementation
+    phase: implementation
+    order: 48
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-build-pipeline.md
+  - id: ls-feature-flag
+    name: "Feature Flag Agent"
+    description: "Implements and manages feature toggles."
+    family: implementation
+    phase: implementation
+    order: 49
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-feature-flag.md
+  - id: ls-api-client-sdk
+    name: "API Client/SDK Agent"
+    description: "Generates and maintains client libraries."
+    family: implementation
+    phase: implementation
+    order: 50
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-api-client-sdk.md
+  - id: ls-cli-tooling
+    name: "CLI/Tooling Agent"
+    description: "Builds developer and operator tools."
+    family: implementation
+    phase: implementation
+    order: 51
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-cli-tooling.md
+  - id: ls-documentation-in-code
+    name: "Documentation‑in‑Code Agent"
+    description: "Maintains inline docs and comments."
+    family: implementation
+    phase: implementation
+    order: 52
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-documentation-in-code.md
+  - id: ls-test-harness-implementation
+    name: "Test Harness Implementation Agent"
+    description: "Builds frameworks for automated tests."
+    family: implementation
+    phase: implementation
+    order: 53
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-test-harness-implementation.md
+  - id: ls-mock-stub-generation
+    name: "Mock & Stub Generation Agent"
+    description: "Creates test doubles for isolation."
+    family: implementation
+    phase: implementation
+    order: 54
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-mock-stub-generation.md
+  - id: ls-code-review-assistant
+    name: "Code Review Assistant Agent"
+    description: "Supports human review with automated insights."
+    family: implementation
+    phase: implementation
+    order: 55
+    source: "lineage-100/implementation"
+    cursor_agent: .cursor/agents/ls-code-review-assistant.md
+  - id: ls-unit-testing
+    name: "Unit Testing Agent"
+    description: "Ensures individual units behave correctly."
+    family: testing
+    phase: testing
+    order: 56
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-unit-testing.md
+  - id: ls-integration-testing
+    name: "Integration Testing Agent"
+    description: "Validates interactions between components."
+    family: testing
+    phase: testing
+    order: 57
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-integration-testing.md
+  - id: ls-system-testing
+    name: "System Testing Agent"
+    description: "Tests the full system in realistic conditions."
+    family: testing
+    phase: testing
+    order: 58
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-system-testing.md
+  - id: ls-end-to-end-testing
+    name: "End‑to‑End Testing Agent"
+    description: "Simulates real user workflows."
+    family: testing
+    phase: testing
+    order: 59
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-end-to-end-testing.md
+  - id: ls-regression-testing
+    name: "Regression Testing Agent"
+    description: "Guards against reintroduced bugs."
+    family: testing
+    phase: testing
+    order: 60
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-regression-testing.md
+  - id: ls-performance-load-testing
+    name: "Performance & Load Testing Agent"
+    description: "Tests under stress and scale."
+    family: testing
+    phase: testing
+    order: 61
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-performance-load-testing.md
+  - id: ls-security-penetration-testing
+    name: "Security & Penetration Testing Agent"
+    description: "Probes for vulnerabilities."
+    family: testing
+    phase: testing
+    order: 62
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-security-penetration-testing.md
+  - id: ls-compliance-testing
+    name: "Compliance Testing Agent"
+    description: "Verifies regulatory and policy adherence."
+    family: testing
+    phase: testing
+    order: 63
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-compliance-testing.md
+  - id: ls-cross-browser-testing
+    name: "Cross‑Browser Testing Agent"
+    description: "Ensures web compatibility."
+    family: testing
+    phase: testing
+    order: 64
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-cross-browser-testing.md
+  - id: ls-cross-device-testing
+    name: "Cross‑Device Testing Agent"
+    description: "Ensures behavior across devices."
+    family: testing
+    phase: testing
+    order: 65
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-cross-device-testing.md
+  - id: ls-chaos-testing
+    name: "Chaos Testing Agent"
+    description: "Injects failures to test resilience."
+    family: testing
+    phase: testing
+    order: 66
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-chaos-testing.md
+  - id: ls-resilience-testing
+    name: "Resilience Testing Agent"
+    description: "Validates recovery and redundancy."
+    family: testing
+    phase: testing
+    order: 67
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-resilience-testing.md
+  - id: ls-data-migration-testing
+    name: "Data Migration Testing Agent"
+    description: "Tests schema and data evolution."
+    family: testing
+    phase: testing
+    order: 68
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-data-migration-testing.md
+  - id: ls-backup-restore-testing
+    name: "Backup & Restore Testing Agent"
+    description: "Ensures data safety and recovery."
+    family: testing
+    phase: testing
+    order: 69
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-backup-restore-testing.md
+  - id: ls-failover-testing
+    name: "Failover Testing Agent"
+    description: "Validates high‑availability mechanisms."
+    family: testing
+    phase: testing
+    order: 70
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-failover-testing.md
+  - id: ls-user-acceptance-testing
+    name: "User Acceptance Testing Agent"
+    description: "Coordinates UAT scenarios and feedback."
+    family: testing
+    phase: testing
+    order: 71
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-user-acceptance-testing.md
+  - id: ls-test-data-management
+    name: "Test Data Management Agent"
+    description: "Curates realistic, safe test data."
+    family: testing
+    phase: testing
+    order: 72
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-test-data-management.md
+  - id: ls-test-coverage-analysis
+    name: "Test Coverage Analysis Agent"
+    description: "Measures and improves coverage."
+    family: testing
+    phase: testing
+    order: 73
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-test-coverage-analysis.md
+  - id: ls-defect-triage
+    name: "Defect Triage Agent"
+    description: "Prioritizes and routes issues."
+    family: testing
+    phase: testing
+    order: 74
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-defect-triage.md
+  - id: ls-release-readiness-verification
+    name: "Release Readiness Verification Agent"
+    description: "Certifies that a release is safe."
+    family: testing
+    phase: testing
+    order: 75
+    source: "lineage-100/testing"
+    cursor_agent: .cursor/agents/ls-release-readiness-verification.md
+  - id: ls-release-orchestration
+    name: "Release Orchestration Agent"
+    description: "Plans and executes releases."
+    family: operations
+    phase: operations
+    order: 76
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-release-orchestration.md
+  - id: ls-canary-blue-green-deployment
+    name: "Canary & Blue‑Green Deployment Agent"
+    description: "Manages progressive rollouts."
+    family: operations
+    phase: operations
+    order: 77
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-canary-blue-green-deployment.md
+  - id: ls-rollback-strategy
+    name: "Rollback Strategy Agent"
+    description: "Designs and executes safe rollbacks."
+    family: operations
+    phase: operations
+    order: 78
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-rollback-strategy.md
+  - id: ls-monitoring-alerting
+    name: "Monitoring & Alerting Agent"
+    description: "Watches health and raises alarms."
+    family: operations
+    phase: operations
+    order: 79
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-monitoring-alerting.md
+  - id: ls-incident-response
+    name: "Incident Response Agent"
+    description: "Coordinates response to outages and incidents."
+    family: operations
+    phase: operations
+    order: 80
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-incident-response.md
+  - id: ls-on-call-coordination
+    name: "On‑Call Coordination Agent"
+    description: "Manages rotations and escalation paths."
+    family: operations
+    phase: operations
+    order: 81
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-on-call-coordination.md
+  - id: ls-capacity-planning
+    name: "Capacity Planning Agent"
+    description: "Forecasts and plans resource needs."
+    family: operations
+    phase: operations
+    order: 82
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-capacity-planning.md
+  - id: ls-cost-optimization
+    name: "Cost Optimization Agent"
+    description: "Reduces waste and improves efficiency."
+    family: operations
+    phase: operations
+    order: 83
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-cost-optimization.md
+  - id: ls-slo-sla-governance
+    name: "SLO/SLA Governance Agent"
+    description: "Defines and tracks reliability targets."
+    family: operations
+    phase: operations
+    order: 84
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-slo-sla-governance.md
+  - id: ls-security-operations
+    name: "Security Operations Agent"
+    description: "Handles ongoing security posture."
+    family: operations
+    phase: operations
+    order: 85
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-security-operations.md
+  - id: ls-patch-upgrade
+    name: "Patch & Upgrade Agent"
+    description: "Manages updates and maintenance."
+    family: operations
+    phase: operations
+    order: 86
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-patch-upgrade.md
+  - id: ls-feature-lifecycle-management
+    name: "Feature Lifecycle Management Agent"
+    description: "Tracks features from launch to retirement."
+    family: operations
+    phase: operations
+    order: 87
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-feature-lifecycle-management.md
+  - id: ls-telemetry-analytics
+    name: "Telemetry & Analytics Agent"
+    description: "Collects and interprets usage data."
+    family: operations
+    phase: operations
+    order: 88
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-telemetry-analytics.md
+  - id: ls-user-feedback-aggregation
+    name: "User Feedback Aggregation Agent"
+    description: "Gathers and structures feedback."
+    family: operations
+    phase: operations
+    order: 89
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-user-feedback-aggregation.md
+  - id: ls-product-iteration-planning
+    name: "Product Iteration Planning Agent"
+    description: "Turns insights into roadmap changes."
+    family: operations
+    phase: operations
+    order: 90
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-product-iteration-planning.md
+  - id: ls-technical-debt-tracking
+    name: "Technical Debt Tracking Agent"
+    description: "Logs and prioritizes structural issues."
+    family: operations
+    phase: operations
+    order: 91
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-technical-debt-tracking.md
+  - id: ls-architecture-evolution
+    name: "Architecture Evolution Agent"
+    description: "Guides long‑term structural change."
+    family: operations
+    phase: operations
+    order: 92
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-architecture-evolution.md
+  - id: ls-data-governance
+    name: "Data Governance Agent"
+    description: "Oversees data quality, lineage, and access."
+    family: operations
+    phase: operations
+    order: 93
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-data-governance.md
+  - id: ls-privacy-ethics
+    name: "Privacy & Ethics Agent"
+    description: "Evaluates impact on users and society."
+    family: operations
+    phase: operations
+    order: 94
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-privacy-ethics.md
+  - id: ls-compliance-audit
+    name: "Compliance Audit Agent"
+    description: "Prepares and supports audits."
+    family: operations
+    phase: operations
+    order: 95
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-compliance-audit.md
+  - id: ls-knowledge-base-documentation
+    name: "Knowledge Base & Documentation Agent"
+    description: "Maintains living documentation."
+    family: operations
+    phase: operations
+    order: 96
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-knowledge-base-documentation.md
+  - id: ls-developer-experience
+    name: "Developer Experience Agent"
+    description: "Improves tools, workflows, and ergonomics."
+    family: operations
+    phase: operations
+    order: 97
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-developer-experience.md
+  - id: ls-community-ecosystem
+    name: "Community & Ecosystem Agent"
+    description: "Engages users, contributors, and partners."
+    family: operations
+    phase: operations
+    order: 98
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-community-ecosystem.md
+  - id: ls-sunset-decommissioning
+    name: "Sunset & Decommissioning Agent"
+    description: "Retires systems safely and cleanly."
+    family: operations
+    phase: operations
+    order: 99
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-sunset-decommissioning.md
+  - id: ls-long-term-stewardship
+    name: "Long‑Term Stewardship Agent"
+    description: "Holds responsibility for the system’s legacy."
+    family: operations
+    phase: operations
+    order: 100
+    source: "lineage-100/operations"
+    cursor_agent: .cursor/agents/ls-long-term-stewardship.md
+orchestration:
+  id: ls-crew-foreman
+  name: "Crew Foreman"
+  description: "Orchestrates the 100 pre-ESFR agents by phase; selects ModeKeys; hands off to ESFR (#101). Not one of the 100."
+  cursor_agent: .cursor/agents/ls-crew-foreman.md
+  in_pre_esfr_count: false
+esfr:
+  id: ls-esfr
+  order: 101
+  name: "ESFR Engineer Standards"
+  description: "Final ship gate after the 100 pre-ESFR agents. Pipeline #101. Not counted in the 100."
+  cursor_agent: .cursor/agents/ls-esfr.md
+modes:
+  native_named: 60
+  compositional_per_agent: 1000
+  registry: packs/mandala-crew/modes-registry.json
+  formula_note: "Shared 1000 ModeKeys for every agent; not 100×1000 files"

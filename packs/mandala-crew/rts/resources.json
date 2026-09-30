@@ -1,0 +1,79 @@
+{
+  "status": "declared",
+  "note": "RTS economy meters. Evidence and constitutionalCompliance bind to governance honesty — not fake runtime gates.",
+  "resources": [
+    {
+      "id": "time",
+      "name": "Time",
+      "description": "Calendar / sprint capacity consumed by builds and missions.",
+      "initial": 100,
+      "max": 200,
+      "regenPerTick": 1,
+      "bind": null
+    },
+    {
+      "id": "budget",
+      "name": "Budget",
+      "description": "Financial runway for structures, units, and drones.",
+      "initial": 200,
+      "max": 500,
+      "regenPerTick": 2,
+      "bind": null
+    },
+    {
+      "id": "compute",
+      "name": "Compute",
+      "description": "Model and CI capacity.",
+      "initial": 80,
+      "max": 200,
+      "regenPerTick": 2,
+      "bind": null
+    },
+    {
+      "id": "storage",
+      "name": "Storage",
+      "description": "Artifact and evidence storage headroom.",
+      "initial": 60,
+      "max": 200,
+      "regenPerTick": 1,
+      "bind": null
+    },
+    {
+      "id": "attention",
+      "name": "Human attention",
+      "description": "Operator focus; scarce when many missions run.",
+      "initial": 40,
+      "max": 80,
+      "regenPerTick": 1,
+      "bind": null
+    },
+    {
+      "id": "risk",
+      "name": "Risk",
+      "description": "Accumulated operational/security risk. Higher is worse.",
+      "initial": 20,
+      "max": 100,
+      "regenPerTick": 0,
+      "bind": null,
+      "higherIsWorse": true
+    },
+    {
+      "id": "evidence",
+      "name": "Evidence",
+      "description": "Proof density from tests, lineage, and probes. Meter only — not a constitutional gate.",
+      "initial": 10,
+      "max": 100,
+      "regenPerTick": 0,
+      "bind": "lineage_and_tests"
+    },
+    {
+      "id": "constitutionalCompliance",
+      "name": "Constitutional compliance",
+      "description": "Declared alignment score toward Drive-G / ESFR readiness. Not an automated promotion enforcer.",
+      "initial": 25,
+      "max": 100,
+      "regenPerTick": 0,
+      "bind": "esfr_and_evidence_bound_docs"
+    }
+  ]
+}

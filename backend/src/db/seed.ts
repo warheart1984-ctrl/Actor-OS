@@ -56,7 +56,50 @@ export const SEED_PROFILES: CreateProfileInput[] = [
       capabilities: ['summarize'],
     },
   },
+  {
+    id: 'agent_drafter',
+    name: 'Document Drafter',
+    binding: { connector: 'openai', model: 'gpt-4.1' },
+    role: 'Writes a complete first draft of a document from a request',
+    settings_json: {
+      temperature: 0.7,
+      max_tokens: 2000,
+      system:
+        'You write complete, well-structured first drafts. State facts plainly and avoid claims you cannot support.',
+      capabilities: ['draft', 'document'],
+    },
+  },
+  {
+    id: 'agent_gate',
+    name: 'Standards Gate',
+    binding: { connector: 'anthropic', model: 'claude-sonnet-5-5' },
+    role: 'Final review (ESFR): approves or rejects a pipeline result',
+    settings_json: {
+      temperature: 0,
+      max_tokens: 800,
+      system:
+        'You are a strict final reviewer. You approve only output that meets the stated request and criteria, and you always end with a VERDICT line.',
+      capabilities: ['review', 'gate'],
+    },
+  },
 ];
+
+/**
+ * Inserts any of the given seed profiles that do not exist yet. Used so that
+ * databases seeded before a profile was added still get it; existing profiles
+ * (including user edits) are never overwritten.
+ */
+export async function ensureSeedProfiles(ids: string[]): Promise<number> {
+  const existing = new Set((await listProfiles()).map((profile) => profile.id));
+  let inserted = 0;
+  for (const profile of SEED_PROFILES) {
+    if (profile.id && ids.includes(profile.id) && !existing.has(profile.id)) {
+      await createProfile(profile);
+      inserted += 1;
+    }
+  }
+  return inserted;
+}
 
 /** Inserts starter agent profiles only when the profiles table is empty. */
 export async function seedIfEmpty(): Promise<number> {
