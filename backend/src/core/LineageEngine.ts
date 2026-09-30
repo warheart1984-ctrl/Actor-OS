@@ -10,6 +10,7 @@ import type {
   TaskStatus,
 } from '../types.js';
 import type { ModelRequest, ModelResponse } from '../models/ModelRouter.js';
+import type { GateVerdict } from './StandardsGate.js';
 
 type LineageRow = {
   id: string;
@@ -177,6 +178,18 @@ export class LineageEngine {
       content,
       metadata,
       evidence: buildEvidence('agent', content, fromProfileId),
+    });
+  }
+
+  /** The standards gate's decision on a pipeline result. */
+  async recordGateVerdict(taskId: string, verdict: GateVerdict): Promise<LineageEvent> {
+    return this.append(taskId, verdict.gateAgentId, 'decision', {
+      gate: 'esfr',
+      verdict: verdict.verdict,
+      status: verdict.verdict,
+      checks: verdict.checks,
+      warnings: verdict.warnings,
+      evidence: buildEvidence('system', JSON.stringify(verdict.checks), 'standards_gate'),
     });
   }
 

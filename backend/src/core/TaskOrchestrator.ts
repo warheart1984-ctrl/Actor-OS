@@ -7,6 +7,7 @@ import {
   renderTaskSpecPrompt,
 } from './TaskSpec.js';
 import type { LineageEngine } from './LineageEngine.js';
+import type { GateVerdict, StandardsGate } from './StandardsGate.js';
 import type { ModelRequest, ModelResponse, ModelRouter } from '../models/ModelRouter.js';
 import type { Task, TaskSpec, TaskStatus } from '../types.js';
 
@@ -15,6 +16,8 @@ export type ChainStepInput = {
   agentId: string;
   /** Omit to feed the previous step's output forward. */
   input?: string;
+  /** Directive placed above the step's (possibly inherited) input. */
+  instruction?: string;
 };
 
 export type CreateTaskInput = {
@@ -245,6 +248,47 @@ export class TaskOrchestrator {
   /** Runs an ordered multi-agent chain, recording one lineage step each. */
   async runChain(taskId: string, steps: ChainStepInput[]): Promise<ModelResponse[]> {
     const task = await this.loadTask(taskId);
+    const responses = await this.executeChain(task, steps);
+    await this.setStatus(task.id, 'done', task.profile_id);
+    return responses;
+  }
+
+  /**
+   * Runs a chain, then hands the result to the standards gate. The gate's
+   * verdict decides the final status: `done` when approved, `rejected` when not.
+   */
+  async runGatedChain(
+    taskId: string,
+    steps: ChainStepInput[],
+    gate: StandardsGate,
+  ): Promise<{ responses: ModelResponse[]; gate: GateVerdict }> {
+    const task = await this.loadTask(taskId);
+    const responses = await this.executeChain(task, steps);
+    let verdict: GateVerdict;
+    try {
+      verdict = await gate.evaluate(task, responses);
+    } catch (error) {
+      await this.failTask(task, error);
+      throw error;
+    }
+    await this.lineage.recordGateVerdict(task.id, verdict);
+    await this.lineage.recordArtifact({
+      taskId: task.id,
+      profileId: verdict.gateAgentId,
+      kind: 'gate_report',
+      content: JSON.stringify(verdict, null, 2),
+      metadata: { verdict: verdict.verdict },
+    });
+    await this.setStatus(
+      task.id,
+      verdict.verdict === 'approved' ? 'done' : 'rejected',
+      verdict.gateAgentId,
+    );
+    return { responses, gate: verdict };
+  }
+
+  /** Executes chain steps and records them; leaves the final status to the caller. */
+  private async executeChain(task: Task, steps: ChainStepInput[]): Promise<ModelResponse[]> {
     if (steps.length === 0) {
       throw new Error('A chain needs at least one step');
     }
@@ -255,6 +299,7 @@ export class TaskOrchestrator {
       taskId: task.id,
       // First step seeds from TaskSpec; later steps inherit prior output.
       input: step.input ?? (index === 0 ? this.promptFor(task) : ''),
+      ...(step.instruction ? { instruction: step.instruction } : {}),
       context: {
         task_spec: task.spec_json,
       },
@@ -281,13 +326,16 @@ export class TaskOrchestrator {
           },
         });
       }
-      await this.setStatus(task.id, 'done', task.profile_id);
       return responses;
     } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      await this.lineage.recordTaskError(task.id, message);
-      await this.setStatus(task.id, 'failed', task.profile_id);
+      await this.failTask(task, error);
       throw error;
     }
+  }
+
+  private async failTask(task: Task, error: unknown): Promise<void> {
+    const message = error instanceof Error ? error.message : String(error);
+    await this.lineage.recordTaskError(task.id, message);
+    await this.setStatus(task.id, 'failed', task.profile_id);
   }
 }

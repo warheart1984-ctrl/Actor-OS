@@ -8,6 +8,11 @@ export type ModelRequest = {
   agentId: string;
   taskId?: string | null;
   input: string;
+  /**
+   * Chain steps only: a directive placed above the step's input, so a step can
+   * say what to do with the previous output it inherits.
+   */
+  instruction?: string;
   context?: Record<string, unknown>;
 };
 
@@ -97,7 +102,8 @@ export class ModelRouter {
     let currentOutput = '';
 
     for (const [index, step] of steps.entries()) {
-      const input = step.input && step.input.trim().length > 0 ? step.input : currentOutput;
+      const base = step.input && step.input.trim().length > 0 ? step.input : currentOutput;
+      const input = step.instruction ? [step.instruction, '---', base].join('\n\n') : base;
       const request: ModelRequest = {
         agentId: step.agentId,
         taskId: step.taskId ?? null,

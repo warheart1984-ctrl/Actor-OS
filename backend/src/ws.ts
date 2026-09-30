@@ -1,5 +1,6 @@
 import { WebSocketServer, WebSocket } from 'ws';
-import type { Server } from 'node:http';
+import type { IncomingMessage, Server } from 'node:http';
+import { authorizeUpgrade, readSecurityConfig, type SecurityConfig } from './api/auth.js';
 import type { LineageEngine } from './core/LineageEngine.js';
 
 export type LineageSocketMessage = {
@@ -11,8 +12,16 @@ export type LineageSocketMessage = {
  * Streams lineage events to every connected client. Clients receive events as
  * they are recorded, which is what drives live lineage and the operator console.
  */
-export function attachWebSocket(server: Server, lineage: LineageEngine): WebSocketServer {
-  const wss = new WebSocketServer({ server, path: '/ws' });
+export function attachWebSocket(
+  server: Server,
+  lineage: LineageEngine,
+  security: SecurityConfig = readSecurityConfig(),
+): WebSocketServer {
+  const wss = new WebSocketServer({
+    server,
+    path: '/ws',
+    verifyClient: (info: { req: IncomingMessage }) => authorizeUpgrade(security, info.req),
+  });
 
   const unsubscribe = lineage.onEvent((event) => {
     const payload = JSON.stringify({ type: 'lineage_event', event } satisfies LineageSocketMessage);

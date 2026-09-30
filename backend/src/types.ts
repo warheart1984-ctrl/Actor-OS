@@ -43,7 +43,8 @@ export type Profile = {
   settings_json: ProfileSettings;
 };
 
-export type TaskStatus = 'pending' | 'running' | 'done' | 'failed';
+/** `rejected` means the chain ran but the standards gate refused the result. */
+export type TaskStatus = 'pending' | 'running' | 'done' | 'failed' | 'rejected';
 
 export type TaskSpecConstraints = {
   tone?: string;
@@ -103,7 +104,14 @@ export type LineageEvent = {
   created_at: string;
 };
 
-export type ArtifactKind = 'document' | 'email' | 'summary' | 'code' | 'response' | 'task_spec';
+export type ArtifactKind =
+  | 'document'
+  | 'email'
+  | 'summary'
+  | 'code'
+  | 'response'
+  | 'task_spec'
+  | 'gate_report';
 
 export type Artifact = {
   id: string;

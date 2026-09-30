@@ -5,11 +5,15 @@
  * Usage: npm --workspace backend run smoke
  */
 const base = (process.env['API_URL'] ?? 'http://localhost:4000').replace(/\/$/, '');
+const token = process.env['LINEAGE_API_TOKEN']?.trim();
 
 async function call(method: string, path: string, body?: unknown): Promise<unknown> {
   const response = await fetch(`${base}${path}`, {
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const payload = await response.json();
@@ -151,5 +155,29 @@ assert(plan.esfrLast, 'plan must end with ESFR');
 assert(plan.steps[plan.steps.length - 1]?.agentId === 'ls-esfr', 'last step must be ls-esfr');
 assert(plan.invokeBrief.includes('ls-esfr'), 'invoke brief must mention ESFR');
 console.log(`crew plan ok (steps=${plan.steps.length})`);
+
+const pipelineRun = (await call('POST', '/api/pipelines/doc-review/run', {
+  title: 'Smoke pipeline',
+  input: 'Write two sentences about agent lineage.',
+})) as {
+  taskId: string;
+  verdict: string;
+  steps: Array<{ agentId: string }>;
+  checks: Array<{ id: string; status: string }>;
+};
+assert(pipelineRun.steps.length === 4, 'doc-review pipeline should run 4 steps');
+assert(
+  pipelineRun.checks.some((check) => check.id === 'evidence_intact' && check.status === 'passed'),
+  'gate must re-verify lineage evidence',
+);
+const pipelineTrail = (await call('GET', `/api/tasks/${pipelineRun.taskId}/lineage`)) as Array<{
+  event_type: string;
+  payload_json: Record<string, unknown>;
+}>;
+assert(
+  pipelineTrail.some((event) => event.payload_json['gate'] === 'esfr'),
+  'gate verdict must be in lineage',
+);
+console.log(`pipeline ok (verdict=${pipelineRun.verdict}, steps=${pipelineRun.steps.length})`);
 
 console.log('SMOKE PASSED');

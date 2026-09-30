@@ -26,6 +26,9 @@ services:
       target: backend
     environment:
       PORT: "4000"
+      HOST: 0.0.0.0
+      LINEAGE_API_TOKEN: ${LINEAGE_API_TOKEN:-}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
       DATABASE_DRIVER: postgres
       DATABASE_URL: postgres://app:app@db:5432/appdb
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
